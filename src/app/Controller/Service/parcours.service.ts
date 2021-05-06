@@ -55,15 +55,13 @@ export class ParcoursService {
   public savecours(): void {
     this.http.put('http://localhost:8036/E-learning/cours/', this.cours).subscribe(
       data => {if (data > 0){
-        //  this._coursList.push(this.clonecours(this.cours));
-      //  this.afficheCours(this.cours.parcours);
-        this._cours = null ;
+        console.log(' save cours');
       }}, eror => {
         console.log('error save cours');
       }
     );
-    this._cours = null ;
     this.afficheCours(this.cours.parcours);
+    this._cours = null ;
   }
   public AjoutSection(id: number): void {
     this.http.get<number>('http://localhost:8036/E-learning/cours/id/' + id).subscribe(
@@ -167,14 +165,14 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteFromSectionview(sections: Section){
-    const index = this._sectionList.findIndex(s => s.code === sections.code);
+    const index = this._sectionList.findIndex(s => s.id === sections.id);
     if (index !== -1){
       this._sectionList.splice(index, 1);
     }
   }
   // tslint:disable-next-line:typedef
   public deleteFromParcoursview(parcour: Parcours){
-    const index = this._parcoursList.findIndex(p => p.code === parcour.code);
+    const index = this._parcoursList.findIndex(p => p.id === parcour.id);
     if (index !== -1){
       this._parcoursList.splice(index, 1);
       this._sectionList = null;
@@ -183,7 +181,7 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteFromCoursview(cour: Cours){
-    const index = this._coursList.findIndex(c => c.code === cour.code);
+    const index = this._coursList.findIndex(c => c.id === cour.id);
     if (index !== -1){
       this._coursList.splice(index, 1);
       this._sectionList = null;
@@ -191,8 +189,8 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteSection(sections: Section) {
-    this.section.code = sections.code;
-    this.http.delete<number>('http://localhost:8036/E-learning/section/code/' + sections.code).subscribe(
+    this.section.id = sections.id;
+    this.http.delete<number>('http://localhost:8036/E-learning/section/id/' + sections.id).subscribe(
       data => {
         console.log('data' + data);
         this.deleteFromSectionview(sections);
@@ -204,8 +202,8 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteCours(cour: Cours){
-    this.cours.code = cour.code;
-    this.http.delete<number >('http://localhost:8036/E-learning/cours/code/' + cour.code ).subscribe(
+    this.cours.id = cour.id;
+    this.http.delete<number >('http://localhost:8036/E-learning/cours/id/' + cour.id ).subscribe(
       data => {
         this.deleteFromCoursview(cour);
       }, error => {
@@ -216,8 +214,8 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteParcours(parcour: Parcours){
-    this.parcours.code = parcour.code;
-    this.http.delete<number>('http://localhost:8036/E-learning/parcours/code/' + parcour.code).subscribe(
+    this.parcours.id = parcour.id;
+    this.http.delete<number>('http://localhost:8036/E-learning/parcours/id/' + parcour.id).subscribe(
       data => {
         this.deleteFromParcoursview(parcour);
       }, error => {
@@ -480,9 +478,19 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public findCoursByid(id: number) {
-    this.http.get<Array<Cours>>('http://localhost:8036/E-learning/cours/id/' + id ).subscribe(
+    this.http.get<Array<Cours>>('http://localhost:8036/E-learning/cours/cours/id/' + id ).subscribe(
       data => {
         this._coursList = data ;
+      }, error => {
+        console.log('erroro');
+      }
+    );
+  }
+  // tslint:disable-next-line:typedef
+  public findSectionByid(id: number) {
+    this.http.get<Array<Section>>('http://localhost:8036/E-learning/section/id/' + id ).subscribe(
+      data => {
+        this._sectionList = data ;
       }, error => {
         console.log('erroro');
       }

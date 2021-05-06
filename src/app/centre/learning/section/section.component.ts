@@ -22,6 +22,10 @@ export class SectionComponent implements OnInit {
     this.parcoursService.findAllCategorieSection();
   }
   // tslint:disable-next-line:typedef
+  findSectionByid(id: number) {
+    this.parcoursService.findSectionByid(id);
+  }
+  // tslint:disable-next-line:typedef
   findAllCours() {
     this.parcoursService.findAllCours();
   }

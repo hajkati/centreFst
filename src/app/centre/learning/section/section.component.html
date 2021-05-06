@@ -13,7 +13,7 @@
         <td>{{s.categorieSection.libelle}}</td>
         <td>{{s.libelle}}</td>
         <td>
-          <button class="btn  btn-sm btn-outline-info btn-plus " (click)="open(list)"><i class="fa fa-eye"></i></button>
+          <button class="btn  btn-sm btn-outline-info btn-plus "(click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
           <button class="btn  btn-sm btn-outline-warning " (click)="open(contentsection)" (click)="updateSection(i,s)"><i class="fa fa-edit"></i></button>
           <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteSection(s)"><i class="fa fa-trash"></i></button>
         </td>
@@ -28,7 +28,7 @@
 
 <ng-template #contentsection let-c="close" let-d="dismiss">
   <div class="modal-header" style="background-color: lightcyan">
-    <h4 class="modal-title" >Ajout d'une section</h4>
+    <h4 class="modal-title" >Update section</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -86,7 +86,7 @@
     <div class="modal-body" >
 
       <table class="table table-striped table-bordered  ">
-        <tr *ngFor="let s of sectionList; index as i">
+        <tr *ngFor="let s of sectionList; index as i" >
           <td>Code</td>
           <td>{{s.code}}</td>
         </tr>
