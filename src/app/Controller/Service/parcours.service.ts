@@ -72,7 +72,7 @@ export class ParcoursService {
   }
   public savesection(): void {
       this.http.put('http://localhost:8036/E-learning/section/', this.section).subscribe(
-        data => {if (data > 0){
+        data => {if (data >= 0){
           console.log('succes update section');
         }}, eror => {
           console.log('error update section');
@@ -95,7 +95,7 @@ export class ParcoursService {
       }
     ); }else{
   this.http.put('http://localhost:8036/E-learning/parcours/', this.parcours).subscribe(
-    data => {if (data > 0){
+    data => {if (data >= 0){
       console.log('succes update parcours');
 }}, eror => {
   console.log('error update parcours');
@@ -393,8 +393,8 @@ export class ParcoursService {
     myClone.indicationProf = section.indicationProf;
     myClone.questions = section.questions;
     myClone.contenu = section.contenu;
-    myClone.content = section.content;
     myClone.url = section.url;
+    myClone.content = section.content;
     return myClone;
   }
 
