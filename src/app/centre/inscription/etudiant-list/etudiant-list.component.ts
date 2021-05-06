@@ -6,6 +6,7 @@ import {Centre} from '../../../Controller/Model/centre.model';
 import {Parcours} from '../../../Controller/Model/parcours.model';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-etudiant-list',
   templateUrl: './etudiant-list.component.html',
@@ -13,18 +14,17 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class EtudiantListComponent implements OnInit {
 
-  constructor(private etudiantService: EtudiantService , private modalService: NgbModal) { }
-  findEtudiantByNom(nom: string): void {
-    this.etudiantService.findEtudiantByNom(nom);
+  constructor(private etudiantService: EtudiantService  ) { }
+
+  public delete(etudiants: Etudiant){
+    this.etudiantService.delete(etudiants);
   }
-  open(content): void{
-    this.modalService.open(content);
+  public save(){
+    this.etudiantService.save();
   }
-  public delete(index: number){
-    this.etudiants.splice(index, 1);
-  }
-  public update(index: number , etudiant: Etudiant){
-    this.etudiantService.update(index, etudiant);
+
+  public valider(){
+    this.etudiantService.valider();
   }
   ngOnInit(): void {
     this.etudiantService.findAll();

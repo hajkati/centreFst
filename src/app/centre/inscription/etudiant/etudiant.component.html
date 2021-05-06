@@ -1,59 +1,67 @@
-
-
-
 <div class="col-md-8 mt-5" style="margin-left: 200px;">
-<div class="card">
-  <div class="card-header" style="background-color: powderblue">Formulaire</div>
-  <div class="card-body"> <div class="container">
-    <h2>inscription</h2>
-    <form action="/action_page.php">
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-6">
-        <label for="pwd">nom:</label>
-        <input type="text" class="form-control" id="nom" placeholder="Enter nom" name="nom" [(ngModel)]="etudiant.nom">
+  <div class="card">
+    <div class="card-header" style="background-color: powderblue">Formulaire</div>
+    <div class="card-body"> <div class="container">
+      <h2>inscription</h2>
+      <form action="/action_page.php">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="pwd">nom:</label>
+              <input type="text" class="form-control" id="nom" placeholder="Enter nom" name="nom" [(ngModel)]="etudiant.nom">
+            </div>
+            <div class="col-md-4">
+              <label for="parcours">prenom :</label>
+              <input type="text" class="form-control" id="prenom" placeholder="Enter prenom" name="parcours" [(ngModel)]="etudiant.prenom">
+            </div>
+            <div class="col-md-4">
+              <label for="ville" class="form-inline">ville:</label>
+              <input type="txt" class="form-control" id="ville" placeholder="Enter ville" name="vil" [(ngModel)]="etudiant.ville">
+            </div>
           </div>
-          <div class="col-md-6">
-        <label for="parcours">prenom :</label>
-        <input type="text" class="form-control" id="prenom" placeholder="Enter prenom" name="parcours" [(ngModel)]="etudiant.prenom">
+        </div>
+        <div class="form-group">
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="email"  class="form-inline">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="etudiant.login">
+            </div>
+            <div class="col-md-4">
+              <label for="pwd" class="form-inline">Password:</label>
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="etudiant.password">
+            </div>
+
+
+            <div class="col-md-4">
+              <label for="age" class="form-inline">Age:</label>
+              <input type="number" class="form-control" id="age" placeholder="Enter age" name="ag" [(ngModel)]="etudiant.age">
+            </div>
           </div>
-
         </div>
-      </div>
-      <div class="form-group">
-
-        <div class="row">
-          <div class="col-md-6">
-        <label for="email"  class="form-inline">Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="etudiant.login">
-          </div>  <div class="col-md-6">
-        <label for="pwd" class="form-inline">Password:</label>
-          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="etudiant.password">
-            </div></div>
-      </div>
 
 
-      <div class="form-group">
-        <div class="row">
-        <div class="col-md-6">
-          <label for="parcours">parcours:</label>
-          <input type="text" class="form-control" id="parcours" placeholder="Enter parcours" name="parcours" [(ngModel)]="etudiant.parcours.code">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="parcours">parcours:</label>
+              <input type="text" class="form-control" id="parcours" placeholder="Enter parcours" name="parcours" [(ngModel)]="etudiant.parcours.libelle">
+            </div>
+            <div class="col-md-6">
+              <label for="centre">centre:</label>
+              <input type="text" class="form-control" id="centre" placeholder="Enter centre" name="centre" [(ngModel)]="etudiant.centre.libelle">
+            </div></div></div>
+        <div class="checkbox">
+          <label><input type="checkbox" name="remember"> Remember me</label>
         </div>
-          <div class="col-md-6">
-        <label for="centre">centre:</label>
-        <input type="text" class="form-control" id="centre" placeholder="Enter centre" name="centre" [(ngModel)]="etudiant.centre.ref">
-          </div></div></div>
-      <div class="checkbox">
-        <label><input type="checkbox" name="remember"> Remember me</label>
-      </div>
 
-    </form>
+      </form>
+    </div>
+
+
+
+
+    </div>
+    <div class="card-footer" style="background-color: powderblue"><button type="submit" class="btn btn-default btn btn-block btn-outline-primary" (click)="save()" >Submit</button></div>
   </div>
-
-
-
-
-  </div>
-  <div class="card-footer" style="background-color: powderblue"><button type="submit" class="btn btn-default btn btn-block btn-outline-primary" (click)="save()" >Submit</button></div>
-</div>
 </div>

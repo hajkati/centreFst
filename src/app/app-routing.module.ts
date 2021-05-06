@@ -21,6 +21,7 @@ import {InscriptionListComponent} from './centre/inscription/inscription-list/in
 import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component';
 import {LoginComponent} from './centre/login/login.component';
 
+
 // tslint:disable-next-line:max-line-length
 export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  InscriptionListComponent , EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent , LoginComponent];
 const routes: Routes = [

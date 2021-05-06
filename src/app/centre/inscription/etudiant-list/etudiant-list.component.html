@@ -1,93 +1,40 @@
-<div class="card mt-4" >
-  <div class="card-header"  style="background-color: lightcyan">List des étudiants</div>
-  <div class="card-body">
-    <table class="table table-striped table-hover" >
-      <thead>
+<div class="card">
+<div class="card-header"  style="background-color: lightcyan">List des étudiants</div>
+<div class="card-body">
+  <table class="table table-striped table-hover" >
+    <thead>
+    <th>nom</th>
+    <th>login</th>
+    <th>age</th>
+    <th>ref</th>
+    <th>password</th>
+    <th>ville</th>
+    <th>parcours</th>
+    <th>centre</th>
 
-      <th>nom</th>
-      <th>login</th>
-      <th>age</th>
-      <th>ref</th>
-      <th>password</th>
-      <th>ville</th>
-      <th>parcours</th>
-      <th>centre</th>
-
-      <th>action</th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let c  of etudiants ; index as i ">
+    <th>action</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c  of etudiants ; index as i ">
 
 
-        <td>{{c.nom}}</td>
-        <td>{{c.login}}</td>
-        <td>{{c.age}}</td>
+      <td>{{c.nom}}</td>
+      <td>{{c.login}}</td>
+      <td>{{c.age}}</td>
 
-        <td>{{c.ref}}</td>
-        <td>{{c.password}}</td>
-        <td>{{c.ville}}</td>
-        <td>{{c.parcours.ref}}</td>
-        <td>{{c.parcours.centre.ref}}</td>
-        <td><span (click)="delete(i)"><i class="fa fa-trash btn btn-danger"></i></span></td>
-        <td><span (click)="update(i,c)"><i class="fa fa-edit btn btn-warning"></i></span></td>
 
-      </tr>
-      </tbody>
-    </table>
+      <td>{{c.password}}</td>
+      <td>{{c.ville}}</td>
+      <td>{{c.parcours.libelle}}</td>
+      <td>{{c.parcours.centre.libelle}}</td>
+      <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span></td>
 
-  </div>
-  <div class="card-footer"> <div class="card-footer" style="background-color: powderblue">
-    <button class="btn  btn-outline-light btn-info mr-lg-4 " (click)="open(contentsearch)">recherche etudiant</button>
-  </div>
-  </div>
+      <td><button class="btn btn-outline-success" (click)="valider()">valider</button></td>
+    </tr>
+    </tbody>
+  </table>
+
 </div>
-<ng-template #contentsearch let-c="close" let-d="dismiss" >
-  <div class="modal-header text-center" style="background-color: lightcyan"  style="width: 100%">
-    <h4 class="modal-title text-center" >recherche etudiant</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body" style="width: 100%">
-    <div class="form">
-      <div class="form-group mt-3">
-        <label class="form-check-label form-inline mr-lg-n5 ">etudiant:
-          <input type="search" class="form-control-sm mr-lg-3 form-inline"  #nomEtudiant [(ngModel)]=" etudiant.nom">
-          <button type="button" class="btn btn-outline-primary mr-lg-3" (click)="findEtudiantByNom(nomEtudiant.value)" >Search</button>
-        </label>
-      </div>
-
-      <div class="card" >
-        <div class="card-header">List des étudiants</div>
-        <div class="card-body">
-          <table class="table table-striped table-hover" >
-            <thead></thead>
-            <th>login</th>
-
-            <th>nom</th>
-
-            <th>parcours libelle</th>
-            <th> centre ref</th>
-            <th> etudiant ref</th>
-            <th>action</th>
-            <tbody>
-            <tr *ngFor="let c  of etudiantslist ; index as i ">
-              <td>{{c.login}}</td>
-
-              <td>{{c.nom}}</td>
-              <td>{{c.parcours.libelle}}</td>
-              <td>{{c.parcours.centre.ref}}</td>
-              <td>{{c.ref}}</td>
-              <td><span (click)="delete(i)"><i class="fa fa-trash btn btn-danger"></i></span></td>
-              <td><span (click)="update(i,c)"><i class="fa fa-edit btn btn-warning"></i></span></td>
-
-            </tr>
-            </tbody>
-          </table>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-</ng-template>
+<div class="card-footer">
+</div>
+</div>
