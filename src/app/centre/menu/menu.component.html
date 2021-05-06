@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-xl navbar-dark responsive " style="background-color: powderblue">
+<nav class="navbar navbar-expand-xl navbar-dark responsive " style="background-color: black">
   <div class="container-fluid ">
     <a class="navbar-brand" href="#">Centre</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
@@ -14,33 +14,29 @@
         <li class="nav-item active"> <a class="nav-link" routerLink="parcours" routerLinkActive="active">Parcours </a> </li>
         <li class="nav-item active"> <a class="nav-link" routerLink="quiz">Quiz </a> </li>
         <li class="nav-item active"> <a class="nav-link" routerLink="quiz-create">Create Quiz </a> </li>
+        <li class="nav-item active"> <a class="nav-link" routerLink="quiz-list">List Quiz </a> </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active"  data-bs-toggle="dropdown">  list  </a>
+          <a class="nav-link dropdown-toggle active"  data-bs-toggle="dropdown">  Our courses  </a>
           <ul class="dropdown-menu fade-up">
-            <li><a class="dropdown-item " routerLink="parcours-list" routerLinkActive="active"> List Parcours </a></li>
-            <li><a class="dropdown-item "  routerLink="cours-list" routerLinkActive="active"> List Cours </a></li>
-            <li><a class="dropdown-item " routerLink="section-list" routerLinkActive="active"> List Section </a></li>
-            <li><a class="dropdown-item " routerLink="categoriesection-list" routerLinkActive="active"> List CategorieSection </a></li>
-            <li><a class="dropdown-item " routerLink="supercategoriesection-list" routerLinkActive="active"> List SuperCategorieSection </a></li>
+            <li><a class="dropdown-item liste" routerLink="parcours-list" routerLinkActive="active"> List Parcours </a></li>
+            <li><a class="dropdown-item liste"  routerLink="cours-list" routerLinkActive="active"> List Cours </a></li>
+            <li><a class="dropdown-item liste" routerLink="section-list" routerLinkActive="active"> List Section </a></li>
+            <li><a class="dropdown-item liste" routerLink="categoriesection-list" routerLinkActive="active"> List CategorieSection </a></li>
+            <li><a class="dropdown-item liste" routerLink="supercategoriesection-list" routerLinkActive="active"> List SuperCategorieSection </a></li>
           </ul>
         </li>
 
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle active"  data-bs-toggle="dropdown"> liste 2 </a>
+          <a class="nav-link dropdown-toggle active"  data-bs-toggle="dropdown"> Students </a>
           <ul class="dropdown-menu dropdown-menu-end fade-down">
-            <li><a class="dropdown-item " routerLink="etudiant-list" routerLinkActive="active"> List etudiant </a></li>
-            <li><a class="dropdown-item " routerLink="inscription-list" routerLinkActive="active"> List inscription </a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"> liste 3 </a>
-          <ul class="dropdown-menu dropdown-menu-end fade-down active">
-            <li><a class="dropdown-item " routerLink="quiz-list" routerLinkActive="active"> List Quiz </a></li>
+            <li><a class="dropdown-item liste" routerLink="etudiant-list" routerLinkActive="active"> List etudiant </a></li>
+            <li><a class="dropdown-item liste" routerLink="inscription-list" routerLinkActive="active"> List inscription </a></li>
           </ul>
         </li>
       </ul>
+
     </div> <!-- navbar-collapse.// -->
   </div> <!-- container-fluid.// -->
 </nav>

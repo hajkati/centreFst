@@ -1,9 +1,13 @@
 @media all and (min-width: 992px) {
   .navbar .dropdown-menu-end{ right:auto; left: 0;float: none;  }
   .navbar .nav-item .dropdown-menu{ float: none;  display:block; opacity: 0;  visibility: hidden; transition:.3s; margin-top:0;  }
-  .navbar .nav-item:hover .nav-link{ float: none;  color: black;  }
-  .navbar .dropdown-menu.fade-down{float: none;  top:100%; transform: rotateX(-75deg); transform-origin: 0% 0%; }
-  .navbar .dropdown-menu.fade-up{float: none;  top:180%;  }
+  .navbar .nav-item:hover .nav-link{ float: none;  color: cyan; border-radius: 5px; box-shadow: 0 0 5px #33ffff, 0 0 5px #66ffff; }
+  .navbar .dropdown-menu.fade-down{float: none;  top:100%; transform: rotateX(-75deg); transform-origin: 0% 0%; background-color: black; color: white}
+  .navbar .dropdown-menu.fade-up {float: none;  top:180%;  background-color: black; color: white}
   .navbar .nav-item:hover .dropdown-menu{float: none;  transition: .3s; opacity:1; visibility:visible; top:100%; transform: rotateX(0deg); }
+  .navbar .dropdown-menu.fade-up .liste{float: none; background-color: black;  color: white; }
+  .navbar .dropdown-menu.fade-up .liste:hover{float: none; color: cyan; border-radius: 5px; box-shadow: 0 0 5px #33ffff, 0 0 5px #66ffff; margin-bottom: 2px;}
+  .navbar .dropdown-menu.fade-down .liste{float: none; background-color: black;  color: white; }
+  .navbar .dropdown-menu.fade-down .liste:hover{float: none; color: cyan; border-radius: 5px; box-shadow: 0 0 5px #33ffff, 0 0 5px #66ffff; margin-bottom: 2px;}
 }
 
