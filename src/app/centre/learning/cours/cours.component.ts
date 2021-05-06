@@ -49,7 +49,9 @@ export class CoursComponent implements OnInit {
   public save(): void {
     this.parcoursService.save();
   }
-
+  public AjoutSection(id: number): void {
+    this.parcoursService.AjoutSection(id);
+  }
   ngOnInit(): void {
   }
   open(content): void {

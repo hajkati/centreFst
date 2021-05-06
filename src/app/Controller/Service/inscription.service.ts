@@ -200,7 +200,7 @@ export class InscriptionService {
   private cloneParcours(parcours: Parcours){
     const myCloneParcours = new Parcours();
     myCloneParcours.id = parcours.id;
-    myCloneParcours.ref = parcours.ref;
+    myCloneParcours.code = parcours.code;
     myCloneParcours.dateCreation = parcours.dateCreation;
     myCloneParcours.libelle = parcours.libelle;
     myCloneParcours.numeroOrder = parcours.numeroOrder;

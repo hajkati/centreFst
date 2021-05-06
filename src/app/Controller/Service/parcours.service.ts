@@ -44,56 +44,44 @@ export class ParcoursService {
     this._index = index;
   }
   public validateSaveParcours(): boolean{
-    return this.parcours.ref != null;
+    return this.parcours.code != null;
   }
   public validateSaveCours(): boolean{
-    return this.cours.ref != null;
+    return this.cours.code != null;
   }
   public validateSaveSection(): boolean{
-    return this.section.ref != null;
+    return this.section.code != null;
   }
   public savecours(): void {
-    if (this.cours.id == null){
-    this.http.post('http://localhost:8036/E-learning/cours/', this.cours).subscribe(
+    this.http.put('http://localhost:8036/E-learning/cours/', this.cours).subscribe(
       data => {if (data > 0){
         //  this._coursList.push(this.clonecours(this.cours));
-        this.afficheCours(this.cours.parcours);
+      //  this.afficheCours(this.cours.parcours);
         this._cours = null ;
       }}, eror => {
         console.log('error save cours');
       }
-    ); }else{
-      this.http.put('http://localhost:8036/E-learning/cours/', this.cours).subscribe(
-        data => {if (data > 0){
-          console.log('succes update cours');
-        }}, eror => {
-          console.log('error update cours');
-        }
-      );
-    }
+    );
     this._cours = null ;
     this.afficheCours(this.cours.parcours);
   }
-  public savesection(): void {
-    if (this.section.id == null ){
-    this.http.post('http://localhost:8036/E-learning/section/', this.section).subscribe(
-      data => {if (data > 0){
+  public AjoutSection(id: number): void {
+    this.http.get<number>('http://localhost:8036/E-learning/cours/id/' + id).subscribe(
+      data => {
         console.log(' save section');
-        /*this.sectionList.push(this.clonesection(this.section));*/
-        this._section = null;
-      }}, eror => {
-        console.log('error save section');
       }
-    ); } else  {
+    );
+  }
+  public savesection(): void {
       this.http.put('http://localhost:8036/E-learning/section/', this.section).subscribe(
         data => {if (data > 0){
           console.log('succes update section');
         }}, eror => {
           console.log('error update section');
         }
-      ); }
-    this._section = null;
-    this.affichelistSection(this.section.cours);
+      );
+      this._section = null;
+      this.affichelistSection(this.section.cours);
   }
   public save(): void {
     if (this.parcours.id == null){
@@ -179,14 +167,14 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteFromSectionview(sections: Section){
-    const index = this._sectionList.findIndex(s => s.ref === sections.ref);
+    const index = this._sectionList.findIndex(s => s.code === sections.code);
     if (index !== -1){
       this._sectionList.splice(index, 1);
     }
   }
   // tslint:disable-next-line:typedef
   public deleteFromParcoursview(parcour: Parcours){
-    const index = this._parcoursList.findIndex(p => p.ref === parcour.ref);
+    const index = this._parcoursList.findIndex(p => p.code === parcour.code);
     if (index !== -1){
       this._parcoursList.splice(index, 1);
       this._sectionList = null;
@@ -195,7 +183,7 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteFromCoursview(cour: Cours){
-    const index = this._coursList.findIndex(c => c.ref === cour.ref);
+    const index = this._coursList.findIndex(c => c.code === cour.code);
     if (index !== -1){
       this._coursList.splice(index, 1);
       this._sectionList = null;
@@ -203,8 +191,8 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteSection(sections: Section) {
-    this.section.ref = sections.ref;
-    this.http.delete<number>('http://localhost:8036/E-learning/section/ref/' + sections.ref).subscribe(
+    this.section.code = sections.code;
+    this.http.delete<number>('http://localhost:8036/E-learning/section/code/' + sections.code).subscribe(
       data => {
         console.log('data' + data);
         this.deleteFromSectionview(sections);
@@ -216,8 +204,8 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteCours(cour: Cours){
-    this.cours.ref = cour.ref;
-    this.http.delete<number >('http://localhost:8036/E-learning/cours/ref/' + cour.ref ).subscribe(
+    this.cours.code = cour.code;
+    this.http.delete<number >('http://localhost:8036/E-learning/cours/code/' + cour.code ).subscribe(
       data => {
         this.deleteFromCoursview(cour);
       }, error => {
@@ -228,8 +216,8 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public deleteParcours(parcour: Parcours){
-    this.parcours.ref = parcour.ref;
-    this.http.delete<number>('http://localhost:8036/E-learning/parcours/ref/' + parcour.ref).subscribe(
+    this.parcours.code = parcour.code;
+    this.http.delete<number>('http://localhost:8036/E-learning/parcours/code/' + parcour.code).subscribe(
       data => {
         this.deleteFromParcoursview(parcour);
       }, error => {
@@ -366,9 +354,10 @@ export class ParcoursService {
   public clone(parcours: Parcours): Parcours {
     const clone = new Parcours();
     clone.id = parcours.id;
-    clone.ref = parcours.ref;
+    clone.code = parcours.code;
     clone.libelle = parcours.libelle;
     clone.numeroOrder = parcours.numeroOrder;
+    clone.nombreCours = parcours.nombreCours;
     clone.description = parcours.description;
     clone.dateCreation = parcours.dateCreation;
     clone.datePublication = parcours.datePublication;
@@ -379,15 +368,15 @@ export class ParcoursService {
   public clonecours(cours: Cours): Cours {
     const myClone = new  Cours();
     myClone.id = cours.id;
-    myClone.ref = cours.ref;
+    myClone.code = cours.code;
     myClone.libelle = cours.libelle;
     myClone.numeroOrder = cours.numeroOrder;
     myClone.description = cours.description;
     myClone.image = cours.image;
-    myClone.nombreContenuEnCours = cours.nombreContenuEnCours;
-    myClone.nombreContenuFinalise = cours.nombreContenuFinalise;
-    myClone.nombreLienEnCours = cours.nombreLienEnCours;
-    myClone.nombreLienFinalise = cours.nombreLienFinalise;
+    myClone.nombreLinkFinalise = cours.nombreLinkFinalise;
+    myClone.nombreLinkEnCours = cours.nombreLinkEnCours;
+    myClone.nombreSectionEnCours = cours.nombreSectionEnCours;
+    myClone.nombreSectionFinalise = cours.nombreSectionFinalise;
     myClone.sectionList = cours.sectionList;
     myClone.parcours = cours.parcours;
     return myClone;
@@ -395,27 +384,25 @@ export class ParcoursService {
 
   public clonesection(section: Section): Section{
     const myClone = new  Section();
-    myClone.ref = section.ref;
+    myClone.code = section.code;
     myClone.libelle = section.libelle;
-    myClone.urlimage = section.urlimage;
-    myClone.urlimage2 = section.urlimage2;
-    myClone.urlimage3 = section.urlimage3;
-    myClone.urlvideo = section.urlvideo;
+    myClone.urlImage = section.urlImage;
+    myClone.urlImage2 = section.urlImage2;
+    myClone.urlImage3 = section.urlImage3;
+    myClone.urlVideo = section.urlVideo;
     myClone.cours = section.cours;
     myClone.categorieSection = section.categorieSection;
     myClone.indicationProf = section.indicationProf;
     myClone.questions = section.questions;
     myClone.contenu = section.contenu;
-    myClone.nombreContenuEnCours = section.nombreContenuEnCours;
-    myClone.nombreContenuFinalise = section.nombreContenuFinalise;
-    myClone.nombreLienEnCours = section.nombreLienEnCours;
-    myClone.nombreLienFinalise = section.nombreLienFinalise;
+    myClone.content = section.content;
+    myClone.url = section.url;
     return myClone;
   }
 
   public afficheCours(parcour: Parcours): void {
-    this.parcours.ref = parcour.ref;
-    this.http.get<Array<Cours>>('http://localhost:8036/E-learning/cours/parcours/ref/' + parcour.ref ).subscribe(
+    this.parcours.code = parcour.code;
+    this.http.get<Array<Cours>>('http://localhost:8036/E-learning/cours/parcours/code/' + parcour.code ).subscribe(
       data => {
         this._coursList = data;
         this._sectionList = null;
@@ -426,8 +413,8 @@ export class ParcoursService {
   }
 
   affichelistSection(cour: Cours): void {
-    this.cours.ref = cour.ref;
-    this.http.get<Array<Section>>('http://localhost:8036/E-learning/section/cours/ref/' + cour.ref ).subscribe(
+    this.cours.id = cour.id;
+    this.http.get<Array<Section>>('http://localhost:8036/E-learning/section/cours/id/' + cour.id ).subscribe(
       data => {
         this._sectionList = data;
       }, error => {
@@ -486,6 +473,16 @@ export class ParcoursService {
       data => {
         this._supercategoriesectionList = data ;
         this._supercategoriesection = null ;
+      }, error => {
+        console.log('erroro');
+      }
+    );
+  }
+  // tslint:disable-next-line:typedef
+  public findCoursByid(id: number) {
+    this.http.get<Array<Cours>>('http://localhost:8036/E-learning/cours/id/' + id ).subscribe(
+      data => {
+        this._coursList = data ;
       }, error => {
         console.log('erroro');
       }

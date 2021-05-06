@@ -23,17 +23,14 @@
         </thead>
         <tbody>
         <tr *ngFor="let s of sectionListByLibelle">
-          <td>{{s.ref}}</td>
+          <td>{{s.code}}</td>
           <td>{{s.libelle}}</td>
           <td>{{s.contenu }}</td>
           <td>{{s.questions}}</td>
           <td>{{s.indicationProf}}</td>
-          <td>{{s.nombreContenuFinalise }}</td>
-          <td>{{s.nombreContenuEnCours }}</td>
-          <td>{{s.nombreLienFinalise}}</td>
-          <td>{{s.nombreLienEnCours }}</td>
-          <td>{{s.urlvideo }}</td>
-          <td>{{s.urlimage }}</td>
+          <td>{{s.content }}</td>
+          <td>{{s.contenu }}</td>
+          <td>{{s.url}}</td>
           <td>{{s.cours.libelle}}</td>
           <td>{{s.categorieSection.libelle }}</td>
         </tr>
