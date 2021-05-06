@@ -11,3 +11,17 @@ div{
 .card-body2{
   visibility: hidden;
 }
+#btn-start{
+  margin-top: 50px;
+}
+#rules{
+  margin-top: 30px;
+  width: 600px;
+  margin-left: 150px;
+}
+#question{
+  margin-top: 50px;
+}
+#reponse-radio{
+  margin-top: 20px;
+}

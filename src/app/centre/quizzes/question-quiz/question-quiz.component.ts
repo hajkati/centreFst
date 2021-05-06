@@ -68,12 +68,12 @@ export class QuestionQuizComponent implements OnInit {
     this.questionService.answer();
   }
 
-  public answerNext(y: number){
-    this.questionService.answerNext(y);
+  public answerNext(){
+    this.questionService.answerNext();
   }
 
-  public findByNumeroNext(y: number){
-    this.questionService.findByNumeroNext(y);
+  public findByNumeroNext(){
+    this.questionService.findByNumeroNext();
   }
 
   public findAllReponseEtudiant(){
@@ -87,9 +87,7 @@ export class QuestionQuizComponent implements OnInit {
   public checkInput(rep: string){
     this.questionService.checkInput(rep);
   }
-  public getAnswerCheckbox(event: any,ref: Reponse){
-    this.questionService.getAnswerCheckbox(event,ref);
-  }
+
 
   public getAnswerRadio(event: any,ref: Reponse){
     this.questionService.getAnswerRadio(event,ref);
@@ -102,6 +100,14 @@ export class QuestionQuizComponent implements OnInit {
   public findQuiz()
   {
     return this.questionService.findQuiz();
+  }
+
+  get note(): number {
+    return this.questionService.note;
+  }
+
+  get r(): number {
+    return this.questionService.r;
   }
 
   public findEtudiant()
@@ -172,6 +178,10 @@ export class QuestionQuizComponent implements OnInit {
   get reponsesEtudiant(): Array<ReponseEtudiant> {
     return this.questionService.reponsesEtudiant;
   }
+  get typeQst(): string {
+    return this.questionService.typeQst;
+  }
+
 
   ngOnInit(): void {
     this.questionService.findByNumero();

@@ -25,6 +25,7 @@ import {InscriptionListComponent} from './centre/inscription/inscription-list/in
 import {QuestionQuizComponent} from './centre/quizzes/question-quiz/question-quiz.component';
 import {QuizCreateComponent} from './centre/quizzes/quiz-create/quiz-create.component';
 import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component';
+import { LoginComponent } from './centre/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component'
     ParcoursComponent,
     CoursComponent,
     SectionComponent,
-    QuizzesComponent
+    QuizzesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

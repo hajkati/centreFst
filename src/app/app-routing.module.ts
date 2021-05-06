@@ -19,11 +19,13 @@ import {SuperCategorieSectionListComponent} from './centre/learning/super-catego
 import {EtudiantListComponent} from './centre/inscription/etudiant-list/etudiant-list.component';
 import {InscriptionListComponent} from './centre/inscription/inscription-list/inscription-list.component';
 import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component';
+import {LoginComponent} from './centre/login/login.component';
 
 // tslint:disable-next-line:max-line-length
-export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  InscriptionListComponent , EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent];
+export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  InscriptionListComponent , EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent , LoginComponent];
 const routes: Routes = [
   {path: '' , component: PageNotFoundComponent},
+  {path: 'login' , component: components[12]},
   {path: 'parcours' , component: components[0]},
   {path: 'parcours-list' , component: components[1]},
   {path: 'cours-list' , component: components[2]},

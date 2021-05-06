@@ -4,33 +4,32 @@
     <div class="card-body" id="quiz">
 
       <div class="start" id="start">
-        <output>Choose the quiz</output><br>
-        <form class="quiz-radio" id="quiz-radio">
-          <div *ngFor="let q of quizs">
-            <input  type="radio" id="id-quiz" name="rep-radio" value="{{q.lib}}">
-            <label>{{q.lib}}</label><br>
+        <output>Welcome to the quiz</output><br>
+        <div class="card"  id="rules">
+          <div class="card-header">
+            <output>Rules</output>
           </div>
-        </form>
-        <input type="button" value="Start" (click)="answer()" style="background-color: lightcyan">
+          <div class="card-body">
+            <output>- You can't go back to the previous question</output><br>
+            <output>- There are question with unique choice , multiple choice and when you will write the answer</output><br>
+            <output>- You have the question's point if : You choose just all correct answer</output><br>
+            <output>- Else you have 0 </output><br>
+          </div>
+        </div>
+
+        <input type="button" id="btn-start" value="Start" (click)="answer()" style="background-color: lightcyan">
       </div>
       <div class="question" id="question">
         <output>{{question.numero}} - {{question.libelle}}</output>
 
         <form class="reponse-radio" id="reponse-radio">
           <div *ngFor="let r of reponses">
-            <input (change)="getAnswerRadio($event,r)" type="radio" id="id-radio" name="rep-radio" value="{{r.lib}}" >
+            <input (change)="getAnswerRadio($event,r)" type="{{this.typeQst}}" id="id-radio" name="rep-radio" value="{{r.lib}}" >
             <label>{{r.lib}}</label><br>
           </div>
           <input type="button" value="Check" (click)="check()" style="background-color: lightcyan">
         </form>
 
-        <form class="reponse-checkbox" id="reponse-checkbox">
-          <div *ngFor="let r of reponses">
-            <input (change)="getAnswerCheckbox($event,r)" type="checkbox" id="id-checkbox" name="rep-checkbox" value="{{r.lib}}" >
-            <label>{{r.lib}}</label><br>
-          </div>
-          <input type="button" value="Check" (click)="check()" style="background-color: lightcyan">
-        </form>
 
         <form class="reponse-text" id="reponse-text">
           <label>Your answer :    </label>
@@ -41,7 +40,7 @@
     </div>
     <div class="card-body2" id="finish">
       <output>You finish this quiz</output><br>
-      <output >Your note is = {{this.quizEtudiant.note}}</output>
+      <output >Your note is = {{this.note}}</output>
     </div>
     <div class="card-footer" style="background-color: powderblue"></div>
   </div>

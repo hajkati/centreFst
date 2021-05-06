@@ -391,13 +391,13 @@ export class QuestionService {
     );
   }
 
-  public findByNumeroNext(y: number){
+  public findByNumeroNext(){
     this.i = this.i + 1;
     this.http.get<Question>('http://localhost:8036/centre/question/numero/' + this.i).subscribe(
       data => {
         this.question = data;
         this.typeQst = data.typeDeQuestion.ref;
-        this.answerNext(y);
+        this.answerNext();
       }
     );
   }
@@ -420,108 +420,76 @@ export class QuestionService {
         {
           if(this.reponsesCorrect[this.m].ref == this.selectedItemsRadio[this.n].ref)
           {
-            this.a = this.a + this.question.pointReponseJuste;
-          }
-          else {
-            this.a = this.a + this.question.pointReponsefausse;
+            this.a = this.a + 1;
           }
         }
       }
-      this.insertReponseEtudiant(this.a);
+      if(this.a == 1)
+      {
+        this.insertReponseEtudiant(this.question.pointReponseJuste);
+        this.note = this.note + this.question.pointReponseJuste;
+      }
+      else
+      {
+        this.insertReponseEtudiant(this.question.pointReponsefausse);
+        this.note = this.note + this.question.pointReponsefausse;
+      }
     }
     else if(this.question.typeDeQuestion.ref == 't2')
     {
+      this.a = 0;
       for (this.n = 0 ; this.n < this.selectedItemsCheckBox.length ; this.n = this.n + 1)
       {
-        this.findAllQuizEtudiant();
-        this.findAllReponseEtudiant();
-        this.findQuizEtudiant();
-        this.a = 0;
         for (this.m = 0 ; this.m < this.reponsesCorrect.length ; this.m = this.m + 1)
         {
           if(this.reponsesCorrect[this.m].ref == this.selectedItemsCheckBox[this.n].ref)
           {
-            this.a = this.a + this.question.pointReponseJuste;
-          }
-          else {
-            this.a = this.a + this.question.pointReponsefausse;
+            this.a = this.a + 1;
           }
         }
-        //this.findAllReponseEtudiant();
-
-        //this.insertReponseEtudiantCheckBox(this.a);
-
-        this.answerNext(this.a);
-
-        this.reponseEtudiant.etudiant = this.etudiant;
+      }
+      if(this.a == this.reponsesCorrect.length && this.selectedItemsCheckBox.length == this.reponsesCorrect.length)
+      {
+        this.a = this.question.pointReponseJuste;
+        this.note = this.note + this.question.pointReponseJuste;
+      }
+      else
+      {
+        this.a = this.question.pointReponsefausse;
+        this.note = this.note + this.question.pointReponsefausse;
+      }
+      for (this.n = 0 ; this.n < this.selectedItemsCheckBox.length ; this.n = this.n + 1)
+      {
+        this.findAllQuizEtudiant();
+        this.findQuizEtudiant();
         this.reponseEtudiant.id = 1;
-        this.reponseEtudiant.note = this.a;
-        this.reponseEtudiant.question = this.question;
+        this.reponseEtudiant.note = (this.a/this.selectedItemsCheckBox.length);
         this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
-        this.reponseEtudiant.ref = 're' + (this.r + 1000);
+        this.reponseEtudiant.ref = 're' + (this.r + 1 + this.n);
         this.reponseEtudiant.reponse = this.selectedItemsCheckBox[this.n];
 
         this.http.post('http://localhost:8036/centre/reponseEtudiant/', this.reponseEtudiant).subscribe(
           data => {
             this.findAllQuizEtudiant();
             this.reponseEtudiant = null;
+            this.r = this.r + 1;
           }
         );
       }
+      this.answerNext();
     }
     if(this.i  == this.count)
     {
-      this.CorrectAnswer();
-    }
-    else
-    {
-      this.CorrectAnswer();
-      //console.log('haaaaaaaaaadik a = ' + this.a);
-      this.findByNumeroNext(this.a);
-      this.findByQuestionRef();
-    }
-  }
-
-  public checkInput(rep) {
-    this.findAllQuizEtudiant();
-    this.findAllReponseEtudiant();
-    this.findQuizEtudiant();
-    this.a = 0;
-    for (this.m = 0; this.m < this.reponsesCorrect.length; this.m = this.m + 1) {
-      if (this.reponsesCorrect[this.m].lib == rep) {
-        this.a = this.a + this.question.pointReponseJuste;
-      }
-      this.reponseEtudiant.etudiant = this.etudiant;
-      this.reponseEtudiant.id = 1;
-      this.reponseEtudiant.note = this.a;
-      this.reponseEtudiant.question = this.question;
-      this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
-      this.reponseEtudiant.ref = 're' + (this.r + 1);
-      this.reponseEtudiant.reponse = this.reponsesCorrect[this.m];
-
-      this.http.post('http://localhost:8036/centre/reponseEtudiant/', this.reponseEtudiant).subscribe(
-        data => {
-          this.findAllQuizEtudiant();
-          this.reponseEtudiant = null;
-        }
-      );
-    }
-    if(this.i  == this.count)
-    {
-      this.CorrectAnswer();
-      this.http.get<Array<ReponseEtudiant>>('http://localhost:8036/centre/reponseEtudiant/etudiant/ref/e1').subscribe(
-        data => {
-          this.reponsesEtudiantNote = data;
-          this.note = data.length;
-        }
-      );
-      this.note = 0;
-      for ( this.m = 0; this.m < this.reponsesEtudiantNote.length; this.m = this.m + 1)
-      {
-        this.note = this.note + this.reponsesEtudiantNote[this.m].note;
-      }
+      console.log('seuil de reussite est = ' + this.quiz.seuilReussite);
       this.quizEtudiant.id = this.quizEtudiants.length;
-      this.quizEtudiant.note = 10;
+      this.quizEtudiant.note = this.note;
+      if(this.quizEtudiant.note >= this.quiz.seuilReussite)
+      {
+        this.quizEtudiant.resultat = 'validé';
+      }
+      else {
+        this.quizEtudiant.resultat = 'non validé';
+      }
       this.http.put('http://localhost:8036/centre/quizEtudiant/' , this.quizEtudiant).subscribe(
         data => {
           console.log('');
@@ -533,7 +501,60 @@ export class QuestionService {
     else
     {
       this.CorrectAnswer();
-      this.findByNumeroNext(0);
+      this.findByNumeroNext();
+      this.findByQuestionRef();
+    }
+  }
+
+
+
+  public checkInput(rep) {
+    this.findAllQuizEtudiant();
+    this.findQuizEtudiant();
+    this.a = 0;
+    for (this.m = 0; this.m < this.reponsesCorrect.length; this.m = this.m + 1) {
+      if (this.reponsesCorrect[this.m].lib == rep) {
+        this.a = this.a + this.question.pointReponseJuste;
+        this.note = this.note + this.question.pointReponseJuste;
+      }
+      this.reponseEtudiant.id = 1;
+      this.reponseEtudiant.note = this.a;
+      this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
+      this.reponseEtudiant.ref = 're' + (this.r + 1);
+      this.reponseEtudiant.reponse = this.reponsesCorrect[this.m];
+
+      this.http.post('http://localhost:8036/centre/reponseEtudiant/', this.reponseEtudiant).subscribe(
+        data => {
+          this.findAllQuizEtudiant();
+          this.reponseEtudiant = null;
+          this.r = this.r + 1;
+        }
+      );
+    }
+    if(this.i  == this.count)
+    {
+      console.log('seuil de reussite est = ' + this.quiz.seuilReussite);
+      this.quizEtudiant.id = this.quizEtudiants.length;
+      this.quizEtudiant.note = this.note;
+      if(this.quizEtudiant.note >= this.quiz.seuilReussite)
+      {
+        this.quizEtudiant.resultat = 'validé';
+      }
+      else {
+        this.quizEtudiant.resultat = 'non validé';
+      }
+      this.http.put('http://localhost:8036/centre/quizEtudiant/' , this.quizEtudiant).subscribe(
+        data => {
+          console.log('');
+        }
+      );
+      document.getElementById ('finish').style.visibility = 'visible';
+      document.getElementById ('quiz').remove();
+    }
+    else
+    {
+      this.CorrectAnswer();
+      this.findByNumeroNext();
       this.findByQuestionRef();
     }
   }
@@ -616,27 +637,13 @@ export class QuestionService {
     );
   }
 
-  /*public findQuizEtudiantRep()
-  {
-    this.http.get<QuizEtudiant>('http://localhost:8036/centre/quizEtudiant/ref/qe' + this.q).subscribe(
-      data => {
-        this.quizEtudiant = data;
-      }
-    );
-  }*/
-
   public insertReponseEtudiant(z: number) {
-    //console.log('quiiiiiiiiiz etudiznt : ' + this.quizEtudiant.id);
     this.findAllQuizEtudiant();
-    this.findAllReponseEtudiant();
     this.findQuizEtudiant();
-
     if (this.question.typeDeQuestion.ref == 't1') {
       for (this.n = 0; this.n < this.selectedItemsRadio.length; this.n = this.n + 1) {
-        this.reponseEtudiant.etudiant = this.etudiant;
         this.reponseEtudiant.id = 1;
         this.reponseEtudiant.note = z;
-        this.reponseEtudiant.question = this.question;
         this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
         this.reponseEtudiant.ref = 're' + (this.r + 1);
         this.reponseEtudiant.reponse = this.selectedItemsRadio[this.n];
@@ -645,56 +652,18 @@ export class QuestionService {
           data => {
             this.findAllQuizEtudiant();
             this.reponseEtudiant = null;
-
-          }
-        );
-        //this.r = this.r + 1;
-      }
-    } else if (this.question.typeDeQuestion.ref == 't2') {
-      /*for (this.n = 0 ; this.n < this.selectedItemsCheckBox.length ; this.n = this.n + 1)
-      {
-        this.reponseEtudiant.etudiant = this.etudiant;
-        this.reponseEtudiant.id = 1;
-        this.reponseEtudiant.note = z;
-        this.reponseEtudiant.question = this.question;
-        this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
-        this.reponseEtudiant.ref = 're' + (this.r + 1);
-        this.reponseEtudiant.reponse = this.selectedItemsCheckBox[this.n];
-
-        this.http.post('http://localhost:8036/centre/reponseEtudiant/', this.reponseEtudiant).subscribe(
-          data => {
-            this.findAllQuizEtudiant();
-            this.reponseEtudiant = null;
+            this.r = this.r + 1;
           }
         );
       }
-      }*/
-      /*this.reponseEtudiant.etudiant = this.etudiant;
-      this.reponseEtudiant.id = 1;
-      this.reponseEtudiant.note = z;
-      this.reponseEtudiant.question = this.question;
-      this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
-      this.reponseEtudiant.ref = 're' + (this.r + 1);
-      this.reponseEtudiant.reponse = this.selectedItemsCheckBox[this.n];
-
-      this.http.post('http://localhost:8036/centre/reponseEtudiant/', this.reponseEtudiant).subscribe(
-        data => {
-          this.findAllQuizEtudiant();
-          this.reponseEtudiant = null;
-        }
-      );
-    }*/
     }
   }
   public insertReponseEtudiantCheckBox(y: number)
   {
     this.findAllQuizEtudiant();
-    /*this.findAllReponseEtudiant();*/
     this.findQuizEtudiant();
-    this.reponseEtudiant.etudiant = this.etudiant;
     this.reponseEtudiant.id = 1;
     this.reponseEtudiant.note = y;
-    this.reponseEtudiant.question = this.question;
     this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
     this.reponseEtudiant.ref = 're' + (this.r + 500);
     this.reponseEtudiant.reponse = this.selectedItemsCheckBox[this.n];
@@ -708,52 +677,50 @@ export class QuestionService {
   }
 
   public answer(){
+    this.findAllReponseEtudiant();
+    this.note = 0;
     this.insertQuizEtudiant();
     this.CorrectAnswer();
-    document.getElementById ('start').style.visibility = 'hidden';
+    document.getElementById ('start').remove();
     document.getElementById ('question').style.visibility = 'visible';
     if(this.question.typeDeQuestion.ref == 't1')
     {
+      this.typeQst = 'radio';
       document.getElementById ('reponse-radio').style.visibility = 'visible';
-      document.getElementById ('reponse-checkbox').style.visibility = 'hidden';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
     }
     else if(this.question.typeDeQuestion.ref == 't2')
     {
-      document.getElementById ('reponse-radio').style.visibility = 'hidden';
-      document.getElementById ('reponse-checkbox').style.visibility = 'visible';
-      document.getElementById ('reponse-checkbox').style.marginTop = '-50px';
+      this.typeQst = 'checkbox';
+      document.getElementById ('reponse-radio').style.visibility = 'visible';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
     }
     else if(this.question.typeDeQuestion.ref == 't3')
     {
       document.getElementById ('reponse-radio').style.visibility = 'hidden';
-      document.getElementById ('reponse-checkbox').style.visibility = 'hidden';
       document.getElementById ('reponse-text').style.visibility = 'visible';
     }
   }
 
-  public answerNext(y: number){
-    //this.insertReponseEtudiant(0);
-    document.getElementById ('start').style.visibility = 'hidden';
+  public answerNext(){
     document.getElementById ('question').style.visibility = 'visible';
-    if(this.typeQst == 't1')
+    if(this.question.typeDeQuestion.ref == 't1')
     {
+      this.typeQst = 'radio';
       document.getElementById ('reponse-radio').style.visibility = 'visible';
-      document.getElementById ('reponse-checkbox').style.visibility = 'hidden';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
     }
-    else if(this.typeQst == 't2')
+    else if(this.question.typeDeQuestion.ref == 't2')
     {
-      document.getElementById ('reponse-radio').style.visibility = 'hidden';
-      document.getElementById ('reponse-checkbox').style.visibility = 'visible';
+      this.typeQst = 'checkbox';
+      document.getElementById ('reponse-radio').style.visibility = 'visible';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
     }
     else if(this.typeQst == 't3')
     {
       document.getElementById ('reponse-radio').style.visibility = 'hidden';
-      document.getElementById ('reponse-checkbox').style.visibility = 'hidden';
       document.getElementById ('reponse-text').style.visibility = 'visible';
+      this.typeQst = 'text';
     }
   }
 
@@ -769,21 +736,23 @@ export class QuestionService {
 
   public getAnswerRadio(event: any,ref: Reponse)
   {
-    if(event.target.checked)
+    if(this.question.typeDeQuestion.ref == 't1')
     {
-      this._selectedItemsRadio.push(ref);
-      this._selectedItemsRadio = this._selectedItemsRadio.filter(m=>m==ref);
+      if(event.target.checked)
+      {
+        this._selectedItemsRadio.push(ref);
+        this._selectedItemsRadio = this._selectedItemsRadio.filter(m=>m==ref);
+      }
     }
-  }
-
-  public getAnswerCheckbox(event: any,ref: Reponse)
-  {
-    if(event.target.checked)
+    else if(this.question.typeDeQuestion.ref == 't2')
     {
-      this._selectedItemsCheckBox.push(ref);
-    }
-    else {
-      this._selectedItemsCheckBox = this._selectedItemsCheckBox.filter(m=>m!=ref);
+      if(event.target.checked)
+      {
+        this._selectedItemsCheckBox.push(ref);
+      }
+      else {
+        this._selectedItemsCheckBox = this._selectedItemsCheckBox.filter(m=>m!=ref);
+      }
     }
   }
 
