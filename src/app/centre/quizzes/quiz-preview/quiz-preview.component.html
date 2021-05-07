@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header" *ngFor="let quiz of quizs">
+    <h1 class="m-auto text-center">{{quiz.lib}}</h1>
+    <button class="btn btn-primary col-md-2 text-center" (click)="findRepByQuestion(this.question)">Start</button>
+  </div>
+  <div class="card-body">
+    <div class="card">
+    <div *ngFor="let q of questions ">
+      <output>{{q.numero}} - {{q.libelle}}</output>
+      <br/>
+      <form>
+        <div *ngFor="let r of question.reponses">
+          <input type="radio" id="id-radio" name="rep-radio" value="{{r.lib}}" >
+          <label>{{r.lib}}</label><br>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+    <div class="card-footer">
+      <button class="btn col-md-2 float-right btn-outline-dark" style="background-color: powderblue">Envoyer</button>
+    </div>
+</div>
+

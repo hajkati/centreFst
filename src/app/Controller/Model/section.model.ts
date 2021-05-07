@@ -2,8 +2,8 @@ import { Cours } from './cours.model';
 import {CategorieSection} from './categorie-section.model';
 export class Section {
   public  id: number ;
-  public  content: number ;
   public  url: number ;
+  public  content: number ;
   public code: string;
   public libelle: string;
   public contenu: string;

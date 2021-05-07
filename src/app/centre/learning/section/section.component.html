@@ -13,7 +13,7 @@
         <td>{{s.categorieSection.libelle}}</td>
         <td>{{s.libelle}}</td>
         <td>
-          <button class="btn  btn-sm btn-outline-info btn-plus " (click)="open(list)"><i class="fa fa-eye"></i></button>
+          <button class="btn  btn-sm btn-outline-info btn-plus " (click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
           <button class="btn  btn-sm btn-outline-warning " (click)="open(contentsection)" (click)="updateSection(i,s)"><i class="fa fa-edit"></i></button>
           <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteSection(s)"><i class="fa fa-trash"></i></button>
         </td>
@@ -28,7 +28,7 @@
 
 <ng-template #contentsection let-c="close" let-d="dismiss">
   <div class="modal-header" style="background-color: lightcyan">
-    <h4 class="modal-title" >Ajout d'une section</h4>
+    <h4 class="modal-title" >Update section</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -79,44 +79,44 @@
   </div>
 
 </ng-template>
-<ng-template #list let-c="close" let-d="dismiss">
+<ng-template #list let-c="close" let-d="dismiss" >
     <div class="modal-header card-header" style="background-color: lightcyan">information Section <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button> </div>
     <div class="modal-body" >
 
-      <table class="table table-striped table-bordered  ">
-        <tr *ngFor="let s of sectionList; index as i">
+      <table class="table table-striped table-bordered "  >
+        <tr >
           <td>Code</td>
-          <td>{{s.code}}</td>
+          <td>{{section.code}}</td>
         </tr>
-        <tr *ngFor="let s of sectionList; index as i">
+        <tr >
           <td>contenu</td>
-          <td>{{s.contenu}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
+          <td>{{section.contenu}}</td></tr>
+        <tr>
           <td>questions</td>
-          <td>{{s.questions}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
+          <td>{{section.questions}}</td></tr>
+        <tr>
           <td>indication Prof</td>
-          <td>{{s.indicationProf}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
+          <td>{{section.indicationProf}}</td></tr>
+        <tr>
           <td>url image</td>
-          <td>{{s.urlImage}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
-          <td>url image2</td>
-          <td>{{s.urlImage2}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
-          <td>url image3</td>
-          <td>{{s.urlImage3}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
+          <td>{{section.urlImage}}</td></tr>
+        <tr>
           <td>url video</td>
-          <td>{{s.urlVideo}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
+          <td>{{section.urlVideo}}</td></tr>
+        <tr >
           <td>cours </td>
-          <td>{{s.cours.libelle}}</td></tr>
-        <tr *ngFor="let s of sectionList; index as i">
+          <td>{{section.cours.libelle}}</td></tr>
+        <tr>
           <td>categorieSection </td>
-          <td>{{s.categorieSection.libelle}}</td></tr>
+          <td>{{section.categorieSection.libelle}}</td></tr>
+        <tr>
+          <td>nombre url </td>
+          <td>{{section.url}}</td></tr>
+        <tr>
+          <td>Content </td>
+          <td>{{section.content}}</td></tr>
       </table>
     </div>
 </ng-template>

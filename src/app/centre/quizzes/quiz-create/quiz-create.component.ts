@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {QuizService} from '../../../Controller/Service/quiz.service';
-import {Question} from '../../../Controller/Model/question.model';
-import {Reponse} from '../../../Controller/Model/reponse.model';
-import {TypeDeQuestion} from '../../../Controller/Model/type-de-question.model';
+import {QuizService} from '../../../controller/service/quiz.service';
+import {Question} from '../../../controller/model/question.model';
+import {Reponse} from '../../../controller/model/reponse.model';
+import {TypeDeQuestion} from '../../../controller/model/type-de-question.model';
 import {createViewChild} from '@angular/compiler/src/core';
-import {Quiz} from '../../../Controller/Model/quiz.model';
+import {Quiz} from '../../../controller/model/quiz.model';
 
 @Component({
   selector: 'app-quiz-create',
@@ -31,16 +31,35 @@ export class QuizCreateComponent implements OnInit {
   get types(): Array<TypeDeQuestion> {
     return this.quizService.types;
   }
-  // @ts-ignore
+  get dataarray(): any[] {
+    return this.quizService.dataarray;
+  }
+  // tslint:disable-next-line:variable-name
+  private _newQuestion = new Question();
+  get newQuestion(): Question {
+    return this._newQuestion;
+  }
+
+  set newQuestion(value: Question) {
+    this._newQuestion = value;
+  }
+
+// @ts-ignore
   ngOnInit(): void {
     this.quizService.findAll();
-    this.questions.push(this.question);
+    // @ts-ignore
+    this.questions.push(this.appendQuestion);
     this.quizService.findQuiz();
+    this.reponse.etatReponse = 'Vrai';
+  }
+  // tslint:disable-next-line:typedef
+  defaultchecked(){
+    return this.quizService.defaultchecked();
   }
   // @ts-ignore
   // tslint:disable-next-line:typedef
   checked(event){
-    return  this.quizService.checked(event);
+   return  this.quizService.checked(event);
   }
   // tslint:disable-next-line:typedef
   public checkedFalse(event: any){
@@ -53,6 +72,10 @@ export class QuizCreateComponent implements OnInit {
     this.quizService.quizSelected();
   }
   // tslint:disable-next-line:typedef
+  public saveQuiz(){
+    return this.quizService.saveQuiz();
+  }
+  // tslint:disable-next-line:typedef
   public addCard(){
     return this.quizService.addCard();
   }
@@ -61,14 +84,24 @@ export class QuizCreateComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   public addFormule(){
-    return   this.quizService.addFormule();
+    const myQuestion = new Question();
+    // @ts-ignore
+    this.questions.push(myQuestion);
   }
   // tslint:disable-next-line:typedef
   public save(){
     return this.quizService.save();
   }
+  // tslint:disable-next-line:typedef
+  public addTable(){
+    return this.quizService.addTable();
+  }
   get quiz(): Quiz {
     return this.quizService.question.quiz;
+  }
+  // tslint:disable-next-line:typedef
+  public deleteCard(index: number){
+    return this.quizService.deleteCard(index);
   }
   // tslint:disable-next-line:typedef
   private clone(question: Question) {
@@ -76,10 +109,10 @@ export class QuizCreateComponent implements OnInit {
     return this.quizService.clone();
   }
   // tslint:disable-next-line:typedef
-  /* addQuestion() {
-     const btn = document.createElement('input');
-     document.body.appendChild(btn);
-   }*/
+ /* addQuestion() {
+    const btn = document.createElement('input');
+    document.body.appendChild(btn);
+  }*/
   // tslint:disable-next-line:typedef
   public addReponse(){
     return this.quizService.addReponse();
@@ -92,4 +125,3 @@ export class QuizCreateComponent implements OnInit {
     this.quizService.delete(index);
   }
 }
-

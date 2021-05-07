@@ -39,15 +39,17 @@ export class EtudiantService {
   }
 
   public deleteEtudiant(etudiants: Etudiant){
-    const index = this._etudiants.findIndex(s => s.ref === etudiants.ref);
+    const index = this._etudiants.findIndex(c => c.ref === c.ref);
     if (index !== -1){
       this._etudiants.splice(index, 1);
+      this._etudiants = null;
     }
   }
   public delete(etudiants: Etudiant){
     this.etudiant.ref = etudiants.ref;
-    this.http.delete<number >('http://localhost:8039/Meryam/etudiant/ref/' + etudiants.ref ).subscribe(
+    this.http.delete<number >('http://localhost:8036/learn/etudiant/ref/' + etudiants.ref ).subscribe(
       data => {
+        console.log('data' + data);
         this.deleteEtudiant(etudiants);
       }, error => {
         console.log('error');
@@ -70,8 +72,7 @@ export class EtudiantService {
 
 
   public save(): void {
-
-    this.http.post<number>('http://localhost:8039/Meryam/etudiant/', this.etudiant).subscribe(
+    this.http.post<number>('http://localhost:8036/learn/etudiant/', this.etudiant).subscribe(
       data => {
         if (data >= 0) {
           this.findAll();
@@ -99,7 +100,7 @@ export class EtudiantService {
     this.etudiantupdate.ville = this.etudiant.ville;
     this.etudiantupdate.parcours = this.etudiant.parcours;
     this.etudiantupdate.etat = 'valider';
-    this.http.put('http://localhost:8039/Meryam/etudiant/', this.etudiantupdate).subscribe(
+    this.http.put('http://localhost:8036/learn/etudiant/', this.etudiantupdate).subscribe(
       data => {
         console.log('succes');
       }
@@ -131,7 +132,7 @@ export class EtudiantService {
 
   constructor(private http: HttpClient) { }
   public findAll(){
-    this.http.get<Array<Etudiant>>( 'http://localhost:8039/Meryam/etudiant/').subscribe(
+    this.http.get<Array<Etudiant>>( 'http://localhost:8036/learn/etudiant/').subscribe(
       data => {
         this.etudiants = data;
       }, error => {
