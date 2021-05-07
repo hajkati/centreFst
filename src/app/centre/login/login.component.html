@@ -13,7 +13,7 @@
         </div>
         <div class="div">
           <h5 id="username">Username</h5>
-          <input type="text" class="input" (click)="username()">
+          <input #user type="text" class="input" (click)="username()">
         </div>
       </div>
       <div class="input-div pass">
@@ -22,11 +22,11 @@
         </div>
         <div class="div">
           <h5 id="password">Password</h5>
-          <input type="password" class="input" (click)="password()">
+          <input #pass type="password" class="input" (click)="password()">
         </div>
       </div>
       <a href="#">Forgot Password?</a>
-      <input type="submit" class="btn" value="Login">
+      <input type="submit" class="btn" value="Login" (click)="findEtudiant(user.value,pass.value)">
     </form>
   </div>
 </div>
