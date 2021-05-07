@@ -71,6 +71,8 @@ export class ParcoursService {
     );
   }
   public savesection(): void {
+    // tslint:disable-next-line:triple-equals
+    if (this.section.id != 0){
       this.http.put('http://localhost:8036/E-learning/section/', this.section).subscribe(
         data => {if (data > 0){
           console.log('succes update section');
@@ -80,6 +82,7 @@ export class ParcoursService {
       );
       this._section = null;
       this.affichelistSection(this.section.cours);
+    }
   }
   public save(): void {
     if (this.parcours.id == null){
@@ -95,7 +98,7 @@ export class ParcoursService {
       }
     ); }else{
   this.http.put('http://localhost:8036/E-learning/parcours/', this.parcours).subscribe(
-    data => {if (data > 0){
+    data => {if (data >= 0){
       console.log('succes update parcours');
 }}, eror => {
   console.log('error update parcours');
@@ -393,8 +396,8 @@ export class ParcoursService {
     myClone.indicationProf = section.indicationProf;
     myClone.questions = section.questions;
     myClone.contenu = section.contenu;
-    myClone.content = section.content;
     myClone.url = section.url;
+    myClone.content = section.content;
     return myClone;
   }
 
@@ -488,9 +491,9 @@ export class ParcoursService {
   }
   // tslint:disable-next-line:typedef
   public findSectionByid(id: number) {
-    this.http.get<Array<Section>>('http://localhost:8036/E-learning/section/id/' + id ).subscribe(
+    this.http.get<Section>('http://localhost:8036/E-learning/section/section/id/' + id ).subscribe(
       data => {
-        this._sectionList = data ;
+        this._section = data ;
       }, error => {
         console.log('erroro');
       }
