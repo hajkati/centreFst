@@ -1,46 +1,49 @@
-<div class="row mt-3">
-  <div class="card col-md-6 ">
-    <div class="card-header" style="background-color: lightcyan" >Liste Des Questions</div>
-    <div class="card-body">
-      <table class="table table-striped table-hover">
-        <thead>
-        <th>Numero Question</th>
-        <th>Libelle Question</th>
-        <th>Type Question</th>
-        <th>Action</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let q of questions">
-          <td>{{q.numero}}</td>
-          <td>{{q.libelle}}</td>
-          <td>{{q.typeDeQuestion}}</td>
-          <td><button class="btn btn-outline-info btn-sm fa fa-plus" (click)="findRepByQuestion(q)"></button></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card-footer"></div>
-  </div>
-  <div class="card col-md-6 " >
-    <div class="card-header" style="background-color: lightcyan">Liste Des Reponses</div>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-        <th>Id</th>
-        <th>Numero</th>
-        <th>Libelle</th>
-        <th>Correct</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let r of question.reponses">
-          <td>{{r.id}}</td>
-          <td>{{r.numero}}</td>
-          <td>{{r.lib}}</td>
-          <td>{{r.etatReponse}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card-footer"></div>
-  </div>
+<div class="row">
+      <div class="card col-md-6">
+        <div class="col-md-9 m-auto">
+        <div class="card-header" style="background-color: powderblue">Liste Des Questions</div>
+        <div class="card-body ">
+          <table class="table table-striped table-hover">
+            <thead>
+            <th>Numero Question</th>
+            <th>Libelle Question</th>
+            <th>Type Question</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let q of questions">
+              <td>{{q.numero}}</td>
+              <td>{{q.libelle}}</td>
+              <td>{{q.typeDeQuestion.lib}}</td>
+              <td><button class="btn btn-outline-info btn-sm fa fa-plus" (click)="findRepByQuestion(q)"></button></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer" style="background-color: powderblue"></div>
+        </div>
+        </div>
+      <div class="card col-md-6 " >
+        <div class="col-md-8 m-auto">
+        <div class="card-header " style="background-color: powderblue">Liste Des Reponses</div>
+        <div class="card-body ">
+          <table class="table">
+            <thead>
+            <th>Id</th>
+            <th>Libelle</th>
+            <th>Correct</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let r of question.reponses">
+              <td>{{r.id}}</td>
+              <td>{{r.lib}}</td>
+              <td>{{r.etatReponse}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer" style="background-color: powderblue"></div>
+        </div>
+      </div>
+
 </div>

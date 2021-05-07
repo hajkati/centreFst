@@ -1,17 +1,16 @@
-
 h1{
   text-align: center;
   font-family: "Arial Black";
   font-weight: bold;
 }
 #mainCard{
+  height: 30%;
   position: center;
-  background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fhtmlcolorcodes.com%2Ffr%2Ftutoriels%2Fcouleur-de-fond-css%2F&psig=AOvVaw06rpTBPyOdn5OjXEOs2rtb&ust=1619739328050000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCNjAwt2BovACFQAAAAAdAAAAABAO");
 }
 
 label{
   color: black;
-  font-weight: bold;
+font-weight: bold;
 }
 #addCard {
   background-color: powderblue;
@@ -19,5 +18,5 @@ label{
 }
 .card{
   height: 10%;
-  width: 70%;
+  width: 67%;
 }
