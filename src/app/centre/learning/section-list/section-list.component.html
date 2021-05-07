@@ -7,17 +7,15 @@
     <div class="card-body">
       <table class="table table-striped">
         <thead>
-        <th>Reference</th>
+        <th>Code</th>
         <th>Libelle</th>
         <th>Contenu</th>
         <th>Question</th>
         <th>Indication Prof</th>
-        <th>Nombre Contenu Finalise</th>
-        <th>Nombre Contenu EnCours</th>
-        <th>Nombre Lien Finalise</th>
-        <th>nombre Lien EnCours</th>
-        <th>Url video</th>
-        <th>Url image</th>
+        <th>Content</th>
+        <th>Url </th>
+        <th>Url Image </th>
+        <th>Url Video</th>
         <th>cours</th>
         <th>CategorieSection</th>
         </thead>
@@ -29,8 +27,9 @@
           <td>{{s.questions}}</td>
           <td>{{s.indicationProf}}</td>
           <td>{{s.content }}</td>
-          <td>{{s.contenu }}</td>
           <td>{{s.url}}</td>
+          <td>{{s.urlImage}}</td>
+          <td>{{s.urlVideo}}</td>
           <td>{{s.cours.libelle}}</td>
           <td>{{s.categorieSection.libelle }}</td>
         </tr>
