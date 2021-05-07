@@ -22,6 +22,7 @@ export class LoginService {
 
   public findEtudiant(username: string, password: string)
   {
+    this.etudiant = null;
     this.http.get<Etudiant>('http://localhost:8036/learn/etudiant/login/' + username + '/password/' + password).subscribe(
       data => {
         this.etudiant = data;

@@ -26,7 +26,7 @@ import {QuizPreviewComponent} from './centre/quizzes/quiz-preview/quiz-preview.c
 export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  InscriptionListComponent , EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent , QuizPreviewComponent ,  LoginComponent  ];
 const routes: Routes = [
   {path: '' , component: PageNotFoundComponent},
-  {path: 'login' , component: components[12]},
+  {path: 'login' , component: components[13]},
   {path: 'parcours' , component: components[0]},
   {path: 'parcours-list' , component: components[1]},
   {path: 'cours-list' , component: components[2]},
