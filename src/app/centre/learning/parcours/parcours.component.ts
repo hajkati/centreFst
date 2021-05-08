@@ -57,10 +57,6 @@ export class ParcoursComponent implements OnInit {
   public deleteCours(cour: Cours){
     this.parcoursService.deleteCours(cour);
   }
-  public savecours(): void{
-    this.parcoursService.savecours();
-  }
-
   afficheSecList(cour: Cours): void {
     this.parcoursService.affichelistSection(cour);
   }

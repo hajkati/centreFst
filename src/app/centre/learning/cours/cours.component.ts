@@ -35,8 +35,11 @@ export class CoursComponent implements OnInit {
   public deleteCours(cour: Cours){
     this.parcoursService.deleteCours(cour);
   }
-  public savecours(): void{
-    this.parcoursService.savecours();
+  public updatecours(): void{
+    this.parcoursService.updatecours();
+  }
+  public Savecours(): void{
+    this.parcoursService.Savecours();
   }
 
   afficheSecList(cour: Cours): void {

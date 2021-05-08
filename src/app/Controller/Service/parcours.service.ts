@@ -52,7 +52,7 @@ export class ParcoursService {
   public validateSaveSection(): boolean{
     return this.section.code != null;
   }
-  public savecours(): void {
+  public updatecours(): void {
     this.http.put('http://localhost:8036/E-learning/cours/', this.cours).subscribe(
       data => {if (data > 0){
         console.log(' save cours');
@@ -63,16 +63,32 @@ export class ParcoursService {
     this.afficheCours(this.cours.parcours);
     this._cours = null ;
   }
+  public Savecours(): void {
+    if (this.cours.id == null){
+    this.http.post<number>('http://localhost:8036/E-learning/cours/', this.cours).subscribe(
+      data => {
+        if (data >= 0){
+          this.afficheCours(this.cours.parcours);
+          this._cours = null ;
+          console.log(' save cours');
+      }}, eror => {
+        console.log('error save cours');
+      }
+    ); }
+  }
   public AjoutSection(id: number): void {
+// tslint:disable-next-line:triple-equals
+if (this.cours.sectionList != this.categoriesection.sectionList){
+    // tslint:disable-next-line:triple-equals
     this.http.get<number>('http://localhost:8036/E-learning/cours/id/' + id).subscribe(
       data => {
         console.log(' save section');
       }
-    );
+    );} else{
+  console.log(this.cours.sectionList.length);
+}
   }
   public savesection(): void {
-    // tslint:disable-next-line:triple-equals
-    if (this.section.id != 0){
       this.http.put('http://localhost:8036/E-learning/section/', this.section).subscribe(
         data => {if (data > 0){
           console.log('succes update section');
@@ -82,7 +98,6 @@ export class ParcoursService {
       );
       this._section = null;
       this.affichelistSection(this.section.cours);
-    }
   }
   public save(): void {
     if (this.parcours.id == null){
@@ -402,8 +417,8 @@ export class ParcoursService {
   }
 
   public afficheCours(parcour: Parcours): void {
-    this.parcours.code = parcour.code;
-    this.http.get<Array<Cours>>('http://localhost:8036/E-learning/cours/parcours/code/' + parcour.code ).subscribe(
+    this.parcours.id = parcour.id;
+    this.http.get<Array<Cours>>('http://localhost:8036/E-learning/cours/parcours/id/' + parcour.id ).subscribe(
       data => {
         this._coursList = data;
         this._sectionList = null;

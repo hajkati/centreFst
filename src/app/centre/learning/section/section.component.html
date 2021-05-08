@@ -14,8 +14,8 @@
         <td>{{s.libelle}}</td>
         <td>
           <button class="btn  btn-sm btn-outline-info btn-plus " (click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
-          <button class="btn  btn-sm btn-outline-warning " (click)="open(contentsection)" (click)="updateSection(i,s)"><i class="fa fa-edit"></i></button>
-          <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteSection(s)"><i class="fa fa-trash"></i></button>
+        <button class="btn  btn-sm btn-outline-warning " (click)="open(contentsection)" (click)="updateSection(i,s)"><i class="fa fa-edit"></i></button>
+         <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteSection(s)"><i class="fa fa-trash"></i></button>
         </td>
       </tr>
       </tbody>
@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<ng-template #contentsection let-c="close" let-d="dismiss">
+<ng-template #contentsection let-c="close" let-d="dismiss" style="width: 200%">
   <div class="modal-header" style="background-color: lightcyan">
     <h4 class="modal-title" >Update section</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -37,8 +37,8 @@
     <div class="form">
       <div class="form-group">
         <label class="primaryLab">Cours reference</label><br>
-        <select type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: lightblue" name="Parcours" (click)="findAllCours()" [(ngModel)]="section.cours.code" >
-          <option  selected="selected" *ngFor="let c of coursList"  [ngValue]="c.code"> {{c.libelle}}</option>
+        <select type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: lightblue" name="Parcours" (click)="findAllCours()" [(ngModel)]="section.cours.id" >
+          <option  selected="selected" *ngFor="let c of coursList"  [ngValue]="c.id"> {{c.libelle}}</option>
         </select>
       </div>
       <div class="form-group">
@@ -53,23 +53,27 @@
       </div>
       <div class="form-group">
         <label>Libelle</label>
-        <input type="text" class="form-control text-center" placeholder="Libelle" [(ngModel)]="section.libelle">
+        <input type="text" class="form-control text-center" rows="" placeholder="Libelle" [(ngModel)]="section.libelle">
       </div>
       <div class="form-group">
         <label>Question</label>
-        <input type="text" class="form-control text-center" placeholder="Question" [(ngModel)]="section.questions">
+        <textarea type="text" class="form-control text-center" rows="" placeholder="Question" [(ngModel)]="section.questions"></textarea>
       </div>
       <div class="form-group">
         <label>Url Image</label>
-        <input type="text" class="form-control text-center" placeholder="Url Image" [(ngModel)]="section.urlImage">
+        <textarea type="text" class="form-control text-center" rows="" placeholder="Url Image" [(ngModel)]="section.urlImage"></textarea>
       </div>
       <div class="form-group">
         <label>Url Video</label>
-        <input type="text" class="form-control text-center" placeholder="Url Video" [(ngModel)]="section.urlVideo">
+        <textarea type="text" class="form-control text-center" rows="" placeholder="Url Video" [(ngModel)]="section.urlVideo"></textarea>
       </div>
       <div class="form-group">
         <label>Contenu</label>
         <textarea type="text" class="form-control text-center" placeholder="Contenu" rows="" [(ngModel)]="section.contenu"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Idication Prof</label>
+        <textarea type="text" class="form-control text-center" placeholder="indication Prof" rows="" [(ngModel)]="section.indicationProf"></textarea>
       </div>
     </div>
   </div>
