@@ -98,10 +98,6 @@
         <label>Description</label>
         <textarea type="text" class="form-control text-center" placeholder="Description" rows="3" [(ngModel)]="cours.description"></textarea>
       </div>
-      <div class="form-group">
-        <label>url image</label>
-        <input type="texte" class="form-control text-center" placeholder="Url image" [(ngModel)]="cours.image">
-      </div>
     </div>
   </div>
 
@@ -110,6 +106,7 @@
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">close</button>
   </div>
 </ng-template>
+
 <ng-template  #popup let-c="close" let-d="dismiss">
   <div class="modal-header" style="background-color: lightcyan"> <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
     <span aria-hidden="true">&times;</span>
