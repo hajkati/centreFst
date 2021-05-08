@@ -17,7 +17,8 @@
           <button class="btn  btn-sm btn-outline-info btn-plus " (click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
         <button class="btn  btn-sm btn-outline-warning " (click)="open(contentsection)" (click)="updateSection(i,s)"><i class="fa fa-edit"></i></button>
          <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteSection(s)"><i class="fa fa-trash"></i></button>
-  </div> </td>
+          </div>
+   </td>
       </tr>
       </tbody>
     </table>
@@ -118,7 +119,6 @@
         <tr>
           <td>categorieSection </td>
           <td>{{section.categorieSection.libelle}}</td></tr>
-       
       </table>
     </div>
 </ng-template>
