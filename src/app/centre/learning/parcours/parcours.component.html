@@ -1,5 +1,5 @@
 
-  <div class="card  mt-lg-5" >
+  <div class="card  mt-lg-5" style="min-width: 50%">
   <div class="card-header text-center" style="background-color: powderblue">Liste des Parcours <button class="btn  btn-outline-light fa fa-plus " style="background-color:seagreen" (click)="open(content)"></button>
   </div>
   <div class="card-body">
@@ -11,10 +11,12 @@
       <tbody>
       <tr  *ngFor="let p of parcoursList;index as i ">
         <td>{{p.libelle}}</td>
-        <td  >
-          <button class="btn  btn-sm btn-sm btn-outline-info btn-plus fa fa-eye" (click)="afficheCours(p)"></button>
+        <td >
+          <div class="btn-group" role="group" aria-label="Basic example">
+          <button class="btn  btn- btn-sm btn-outline-info btn-plus fa fa-eye" (click)="afficheCours(p)"></button>
           <button class="btn  btn-sm btn-outline-warning " (click)="open(contentUpdate)" (click)="updateParcours(i,p)"><i class="fa fa-edit"></i></button>
           <button class="btn  btn-sm btn-outline-danger btn-trash" (click)="deleteParcours(p)"><i class="fa fa-trash"></i></button>
+          </div>
         </td>
       </tr>
       </tbody>

@@ -1,4 +1,4 @@
-<div class="card   mt-lg-5" >
+<div class="card   mt-lg-5" style="min-width: 50%" >
   <div class="card-header text-center"  style="background-color: powderblue">Liste des cours
     <button class="btn  btn-outline-light fa fa-plus " style="background-color:seagreen" (click)="open(contentSavecours)"></button></div>
   <div class="card-body" >
@@ -12,10 +12,12 @@
       <tr  *ngFor="let c of coursList ; index as i">
         <td>{{c.libelle}}</td>
         <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
           <button class="btn  btn-sm btn-outline-info btn-plus "  (click)="afficheSecList(c)"><i class="fa fa-eye"></i></button>
-          <button class="btn btn-outline-info btn-sm fa fa-plus"  (click)="AjoutSection(c.id)"  (click)="open(popup)"></button>
+          <button class="btn btn-outline-primary btn-sm fa fa-plus"  (click)="AjoutSection(c.id)"  (click)="open(popup)"></button>
           <button class="btn  btn-sm btn-outline-warning " (click)="open(contentcours)" (click)="updateCours(i,c)"><i class="fa fa-edit"></i></button>
           <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteCours(c)"><i class="fa fa-trash"></i></button>
+          </div>
         </td>
       </tr>
       </tbody>
@@ -109,18 +111,17 @@
   </div>
 </ng-template>
 <ng-template  #popup let-c="close" let-d="dismiss">
-  <div class="modal-header" style="background-color: lightcyan"></div>
+  <div class="modal-header" style="background-color: lightcyan"> <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button></div>
   <div class="modal-body" >
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+
     <div class="form">
       <div class="form-group">
-        <label>Ajout des section avec succes</label>
+        <label class="text-center">Ajout des section effectué avec succès</label>
       </div>
+      <button type="button" class="btn btn-outline-light btn-dark " style="margin-left: 90% " (click)="c('Save click')">ok</button>
     </div>
   </div>
-  <div class="modal-footer" style="background-color: lightcyan">
-  <button type="button" class="btn btn-outline-light btn-dark" (click)="c('Save click')">ok</button>
-  </div>
+
 </ng-template>

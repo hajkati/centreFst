@@ -1,4 +1,4 @@
-<div class="card mt-lg-5" >
+<div class="card mt-lg-5" style="min-width: 50%">
   <div class="card-header" style="background-color: powderblue">Liste des sections</div>
   <div class="card-body">
 
@@ -13,10 +13,11 @@
         <td>{{s.categorieSection.libelle}}</td>
         <td>{{s.libelle}}</td>
         <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
           <button class="btn  btn-sm btn-outline-info btn-plus " (click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
         <button class="btn  btn-sm btn-outline-warning " (click)="open(contentsection)" (click)="updateSection(i,s)"><i class="fa fa-edit"></i></button>
          <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteSection(s)"><i class="fa fa-trash"></i></button>
-        </td>
+  </div> </td>
       </tr>
       </tbody>
     </table>
@@ -85,11 +86,11 @@
 
 
 
-<ng-template class="col-md-10" #list let-c="close" let-d="dismiss" >
-    <div class="modal-header card-header" style="background-color: lightcyan">information Section <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+<ng-template style="min-width:300px;" #list let-c="close" let-d="dismiss" >
+    <div class="modal-header card-header" style="min-width:300px;" style="background-color: lightcyan">information Section <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button> </div>
-    <div class="modal-body" >
+    <div class="modal-body" style="min-width:300px;" >
 
       <table class="table table-striped table-bordered "  >
         <tr >
