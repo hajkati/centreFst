@@ -47,7 +47,7 @@ export class EtudiantService {
   }
   public delete(etudiants: Etudiant){
     this.etudiant.ref = etudiants.ref;
-    this.http.delete<number >('http://localhost:8036/learn/etudiant/ref/' + etudiants.ref ).subscribe(
+    this.http.delete<number >('http://localhost:8036/elearning/etudiant/ref/' + etudiants.ref ).subscribe(
       data => {
         console.log('data' + data);
         this.deleteEtudiant(etudiants);
@@ -69,43 +69,44 @@ export class EtudiantService {
     this._etudiantslist = value;
   }
 
-
+  public findByNom(name: string) {
+    this.http.get<Array<Etudiant>>('http://localhost:8036/elearning/etudiant/nom/' + name ).subscribe(
+      data => {
+        this._etudiants = data ;
+        this._etudiant = null ;
+      }, error => {
+        console.log('erroro');
+      }
+    );
+  }
 
   public save(): void {
-    this.http.post<number>('http://localhost:8036/learn/etudiant/', this.etudiant).subscribe(
+    this.http.post<number>('http://localhost:8036/elearning/etudiant/', this.etudiant).subscribe(
       data => {
         if (data >= 0) {
           this.findAll();
           this._etudiant = null;
         }
       }, error => {
-        console.log('error');
+        console.log('la fonction ne fonctionne pas');
       }
     );
     this._etudiant = null;
   }
 
+
   public update(index: number, etudiant: Etudiant) {
     this.etudiant = this.clone(etudiant);
     this._index = index;
   }
-  public valider(): void {
-    this.etudiantupdate.id = this.etudiant.id;
-    this.etudiantupdate.nom = this.etudiant.nom;
-    this.etudiantupdate.login = this.etudiant.login;
-    this.etudiantupdate.prenom = this.etudiant.prenom;
-    this.etudiantupdate.password = this.etudiant.password;
-    this.etudiantupdate.age = this.etudiant.age;
-    this.etudiantupdate.ref = this.etudiant.ref;
-    this.etudiantupdate.ville = this.etudiant.ville;
-    this.etudiantupdate.parcours = this.etudiant.parcours;
-    this.etudiantupdate.etat = 'valider';
-    this.http.put('http://localhost:8036/learn/etudiant/', this.etudiantupdate).subscribe(
+  public valider(etudiant: Etudiant): void {
+    etudiant.etat = 'valider';
+    this.http.put('http://localhost:8036/elearning/etudiant/', etudiant).subscribe(
       data => {
-        console.log('succes');
+        console.log('');
       }
     );
-    console.log('er');
+    console.log('error');
 
   }
   get etudiants(): Array<Etudiant> {
@@ -132,7 +133,7 @@ export class EtudiantService {
 
   constructor(private http: HttpClient) { }
   public findAll(){
-    this.http.get<Array<Etudiant>>( 'http://localhost:8036/learn/etudiant/').subscribe(
+    this.http.get<Array<Etudiant>>( 'http://localhost:8036/elearning/etudiant/').subscribe(
       data => {
         this.etudiants = data;
       }, error => {

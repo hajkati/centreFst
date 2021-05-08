@@ -15,31 +15,28 @@ import {CoursListComponent} from './centre/learning/cours-list/cours-list.compon
 import {SectionListComponent} from './centre/learning/section-list/section-list.component';
 import {CategorieSectionListComponent} from './centre/learning/categorie-section-list/categorie-section-list.component';
 import {SuperCategorieSectionListComponent} from './centre/learning/super-categorie-section-list/super-categorie-section-list.component';
-
 import {EtudiantListComponent} from './centre/inscription/etudiant-list/etudiant-list.component';
-import {InscriptionListComponent} from './centre/inscription/inscription-list/inscription-list.component';
 import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component';
 import {LoginComponent} from './centre/login/login.component';
 import {QuizPreviewComponent} from './centre/quizzes/quiz-preview/quiz-preview.component';
 
 // tslint:disable-next-line:max-line-length
-export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  InscriptionListComponent , EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent , QuizPreviewComponent ,  LoginComponent  ];
+export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent , QuizPreviewComponent ,  LoginComponent  ];
 const routes: Routes = [
   {path: '' , component: PageNotFoundComponent},
-  {path: 'login' , component: components[13]},
+  {path: 'login' , component: components[12]},
   {path: 'parcours' , component: components[0]},
   {path: 'parcours-list' , component: components[1]},
   {path: 'cours-list' , component: components[2]},
   {path: 'section-list' , component: components[3]},
   {path: 'categoriesection-list' , component: components[4]},
   {path: 'supercategoriesection-list' , component: components[5]},
-  {path: 'inscription-list' , component: components[6]},
-  {path: 'etudiant' , component: components[7]},
-  {path: 'etudiant-list' , component: components[8]},
-  {path: 'quiz' , component: components[9]},
-  {path: 'quiz-create' , component: components[10]},
-  {path: 'quiz-list' , component: components[11]},
-  {path: 'quiz-preview' , component: components[12]},
+  {path: 'etudiant' , component: components[6]},
+  {path: 'etudiant-list' , component: components[7]},
+  {path: 'quiz' , component: components[8]},
+  {path: 'quiz-create' , component: components[9]},
+  {path: 'quiz-list' , component: components[10]},
+  {path: 'quiz-preview' , component: components[11]},
   {path: '**' , component: PageNotFoundComponent},
 ];
 @NgModule({

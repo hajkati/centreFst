@@ -23,8 +23,8 @@ export class EtudiantListComponent implements OnInit {
     this.etudiantService.save();
   }
 
-  public valider(){
-    this.etudiantService.valider();
+  public valider(etudiant: Etudiant) {
+    this.etudiantService.valider(etudiant);
   }
   ngOnInit(): void {
     this.etudiantService.findAll();
@@ -43,5 +43,8 @@ export class EtudiantListComponent implements OnInit {
   }
   get parcours(): Parcours{
     return this.etudiantService.parcours;
+  }
+  findByNom(name: string): void {
+    this.etudiantService.findByNom(name);
   }
 }

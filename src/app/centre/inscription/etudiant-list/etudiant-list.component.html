@@ -1,40 +1,55 @@
-<div class="card">
-<div class="card-header"  style="background-color: lightcyan">List des étudiants</div>
-<div class="card-body">
-  <table class="table table-striped table-hover" >
-    <thead>
-    <th>nom</th>
-    <th>login</th>
-    <th>age</th>
-    <th>ref</th>
-    <th>password</th>
-    <th>ville</th>
-    <th>parcours</th>
-    <th>centre</th>
+<div class="container-lg  ">
+  <div class="form-group mt-lg-5 " >
 
-    <th>action</th>
-    </thead>
-    <tbody>
-    <tr *ngFor="let c  of etudiants ; index as i ">
+    <label class="form-check-label form-inline mr-lg-n5 "> Etudiant :
+      <input type="search" class="form-control-sm col-md-10 form-inline"  #nom [(ngModel)]="etudiant.nom" >
+      <button type="button" class="btn btn-outline-primary " style="margin-left: 20px" (click)="findByNom(nom.value)" >Search</button></label>
+
+  </div>
+  <div class="card">
+    <div class="card-header"  style="background-color: lightcyan">List des inscriptions</div>
+    <div class="card-body">
+      <table class="table table-striped table-hover" >
+        <thead>
+        <th>id</th>
+        <th>nom</th>
+        <th>login</th>
+        <th>age</th>
+        <th>ref</th>
+        <th>password</th>
+        <th>etat</th>
+        <th>ville</th>
+        <th>parcours</th>
+        <th>centre</th>
+
+        <th>action</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c  of etudiants ; index as i ">
 
 
-      <td>{{c.nom}}</td>
-      <td>{{c.login}}</td>
-      <td>{{c.age}}</td>
+          <td>{{c.id}}</td>
+          <td>{{c.nom}}</td>
+          <td>{{c.login}}</td>
+          <td>{{c.age}}</td>
 
 
-      <td>{{c.password}}</td>
-      <td>{{c.ville}}</td>
-      <td>{{c.parcours.libelle}}</td>
-      <td>{{c.parcours.centre.libelle}}</td>
-      <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span></td>
+          <td>{{c.password}}</td>
+          <td>{{c.ville}}</td>
+          <td>{{c.etat}}</td>
+          <td>{{c.parcours.libelle}}</td>
+          <td>{{c.parcours.centre.libelle}}</td>
+          <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span></td>
 
-      <td><button class="btn btn-outline-success" (click)="valider()">valider</button></td>
-    </tr>
-    </tbody>
-  </table>
 
-</div>
-<div class="card-footer">
-</div>
+          <td> <input type="checkbox" id="etat1" name="etat1" value="etat" (click)="valider(c)"></td>
+
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="card-footer">
+    </div>
+  </div>
 </div>

@@ -81,9 +81,11 @@
     <button type="button" class="btn btn-outline-light btn-dark" (click)="savesection()" >Save</button>
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">close</button>
   </div>
-
 </ng-template>
-<ng-template #list let-c="close" let-d="dismiss" >
+
+
+
+<ng-template class="col-md-10" #list let-c="close" let-d="dismiss" >
     <div class="modal-header card-header" style="background-color: lightcyan">information Section <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button> </div>
@@ -124,3 +126,4 @@
       </table>
     </div>
 </ng-template>
+

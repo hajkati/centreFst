@@ -27,6 +27,7 @@ export class ParcoursService {
   private _centre: Centre;
   private _centreList: Array<Centre>;
   private _index: number;
+
   constructor(private http: HttpClient ) {  }
   // tslint:disable-next-line:typedef
   public updateParcours(index: number, parcours: Parcours) {
@@ -75,6 +76,9 @@ export class ParcoursService {
         console.log('error save cours');
       }
     ); }
+    this._cours = null ;
+    this.afficheCours(this.cours.parcours);
+
   }
   public AjoutSection(id: number): void {
 // tslint:disable-next-line:triple-equals
@@ -89,8 +93,10 @@ if (this.cours.sectionList != this.categoriesection.sectionList){
 }
   }
   public savesection(): void {
+
       this.http.put('http://localhost:8036/E-learning/section/', this.section).subscribe(
-        data => {if (data > 0){
+        data => {if (data >= 0){
+
           console.log('succes update section');
         }}, eror => {
           console.log('error update section');
@@ -400,6 +406,7 @@ if (this.cours.sectionList != this.categoriesection.sectionList){
 
   public clonesection(section: Section): Section{
     const myClone = new  Section();
+    myClone.id = section.id;
     myClone.code = section.code;
     myClone.libelle = section.libelle;
     myClone.urlImage = section.urlImage;

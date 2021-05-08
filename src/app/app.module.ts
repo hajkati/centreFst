@@ -21,7 +21,6 @@ import {CoursListComponent} from './centre/learning/cours-list/cours-list.compon
 import {CategorieSectionListComponent} from './centre/learning/categorie-section-list/categorie-section-list.component';
 import {EtudiantListComponent} from './centre/inscription/etudiant-list/etudiant-list.component';
 import {SuperCategorieSectionListComponent} from './centre/learning/super-categorie-section-list/super-categorie-section-list.component';
-import {InscriptionListComponent} from './centre/inscription/inscription-list/inscription-list.component';
 import {QuestionQuizComponent} from './centre/quizzes/question-quiz/question-quiz.component';
 import {QuizCreateComponent} from './centre/quizzes/quiz-create/quiz-create.component';
 import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component';
@@ -45,7 +44,6 @@ import { LoginComponent } from './centre/login/login.component';
     LearningComponent,
     EtudiantComponent,
     EtudiantListComponent,
-    InscriptionListComponent,
     QuestionQuizComponent,
     QuizCreateComponent,
     QuizListComponent,

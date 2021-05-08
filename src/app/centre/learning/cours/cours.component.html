@@ -80,8 +80,8 @@
     <div class="form">
       <div class="form-group ">
         <label class="primaryLab">Parcours </label><br>
-        <select type="text" class="btn btn-block btn-outline-light form-control " name="Parcours" style="background-color: lightblue"  (click)="init()" [(ngModel)]="cours.parcours.id" >
-          <option  selected="selected" *ngFor="let p of parcoursList"  [ngValue]="p.id"> {{p.libelle}}</option>
+        <select type="text" class="btn btn-block btn-outline-light form-control " name="Parcours" style="background-color: lightblue"  (click)="init()" [(ngModel)]="cours.parcours.code" >
+          <option  selected="selected" *ngFor="let p of parcoursList"  [ngValue]="p.code"> {{p.libelle}}</option>
         </select>
       </div>
       <div class="form-group">
