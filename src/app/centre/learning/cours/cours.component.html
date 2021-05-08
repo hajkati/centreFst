@@ -1,5 +1,5 @@
 <div class="card   mt-lg-5" style="min-width: 50%" >
-  <div class="card-header text-center"  style="background-color: powderblue">Liste des cours
+  <div class="card-header text-center " style="color: cyan; background-color: black">Liste des cours
     <button class="btn  btn-outline-light fa fa-plus " style="background-color:seagreen" (click)="open(contentSavecours)"></button></div>
   <div class="card-body" >
     <div >
@@ -23,7 +23,7 @@
       </tbody>
     </table></div>
   </div>
-  <div class="card-footer" style="background-color: powderblue">
+  <div class="card-footer" style="background-color: black">
 
 
   </div>
@@ -31,13 +31,13 @@
 
 
 <ng-template  #contentcours let-c="close" let-d="dismiss">
-  <div class="modal-header" style="background-color: lightcyan">
+  <div class="modal-header" style="color: cyan; background-color: black">
     <h4 class="modal-title text-center" >ajout cours</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
     </button>
   </div>
-  <div class="modal-body" style="background-color: lightcyan">
+  <div class="modal-body" >
     <div class="form">
       <div class="form-group ">
         <label class="primaryLab">Parcours </label><br>
@@ -64,21 +64,21 @@
     </div>
   </div>
 
-  <div class="modal-footer" style="background-color: lightcyan">
+  <div class="modal-footer" style="background-color: black">
     <button type="button" class="btn btn-outline-light btn-dark"  (click)="updatecours()">Update</button>
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">close</button>
+    <button type="button" class="btn btn-outline-dark btn-light" (click)="c('Save click')">close</button>
   </div>
 </ng-template>
 
 
 <ng-template  #contentSavecours let-c="close" let-d="dismiss">
-  <div class="modal-header" style="background-color: lightcyan">
+  <div class="modal-header"style="color: cyan; background-color: black">
     <h4 class="modal-title text-center" >ajout cours</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
     </button>
   </div>
-  <div class="modal-body" style="background-color: lightcyan">
+  <div class="modal-body">
     <div class="form">
       <div class="form-group ">
         <label class="primaryLab">Parcours </label><br>
@@ -101,15 +101,16 @@
     </div>
   </div>
 
-  <div class="modal-footer" style="background-color: lightcyan">
+  <div class="modal-footer" style="background-color: black">
     <button type="button" class="btn btn-outline-light btn-dark"  (click)="Savecours()">save</button>
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">close</button>
+    <button type="button" class="btn btn-outline-dark btn-light" (click)="c('Save click')">close</button>
   </div>
 </ng-template>
 
 <ng-template  #popup let-c="close" let-d="dismiss">
-  <div class="modal-header" style="background-color: lightcyan"> <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-    <span aria-hidden="true">&times;</span>
+  <div class="modal-header" style="color: cyan; background-color: black">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
   </button></div>
   <div class="modal-body" >
 
@@ -117,7 +118,7 @@
       <div class="form-group">
         <label class="text-center">Ajout des section effectué avec succès</label>
       </div>
-      <button type="button" class="btn btn-outline-light btn-dark " style="margin-left: 90% " (click)="c('Save click')">ok</button>
+      <button type="button" class="btn btn-outline-dark btn-light " style="margin-left: 90% " (click)="c('Save click')">ok</button>
     </div>
   </div>
 

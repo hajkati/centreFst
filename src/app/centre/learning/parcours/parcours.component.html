@@ -1,6 +1,6 @@
 
   <div class="card  mt-lg-5" style="min-width: 50%">
-  <div class="card-header text-center" style="background-color: powderblue">Liste des Parcours <button class="btn  btn-outline-light fa fa-plus " style="background-color:seagreen" (click)="open(content)"></button>
+  <div class="card-header text-center"  style="color: cyan; background-color: black">Liste des Parcours <button class="btn  btn-outline-light fa fa-plus " style="background-color:seagreen" (click)="open(content)"></button>
   </div>
   <div class="card-body">
     <table class="table table-responsive table-hover">
@@ -22,18 +22,18 @@
       </tbody>
     </table>
   </div>
-  <div class="card-footer" style="background-color: powderblue">
+  <div class="card-footer" style="background-color: black">
   </div>
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header" style="background-color: lightcyan">
+  <div class="modal-header"  style="color: cyan; background-color: black">
     <h4 class="modal-title" id="modal-basic-title">ajout parcours</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
     </button>
   </div>
-  <div class="modal-body" style="background-color: lightcyan">
+  <div class="modal-body">
     <div class="form">
       <div class="form-group">
         <label class="primaryLab"> centre </label>
@@ -59,20 +59,20 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer" style="background-color: lightcyan">
+  <div class="modal-footer" style="background-color: black">
     <button type="button" class="btn btn-outline-light btn-dark" (click)="save()"  >Save</button>
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">close</button>
+    <button type="button" class="btn btn-outline-dark btn-light" (click)="c('Save click')">close</button>
   </div>
 </ng-template>
 
   <ng-template #contentUpdate let-c="close" let-d="dismiss">
-    <div class="modal-header" style="background-color: lightcyan">
+    <div class="modal-header"  style="color: cyan; background-color: black">
       <h4 class="modal-title" >ajout parcours</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
       </button>
     </div>
-    <div class="modal-body" style="background-color: lightcyan">
+    <div class="modal-body" >
       <div class="form">
         <div class="form-group">
           <label class="primaryLab"> centre </label>
@@ -98,9 +98,9 @@
         </div>
       </div>
     </div>
-    <div class="modal-footer" style="background-color: lightcyan">
-      <button type="button" class="btn btn-outline-light btn-dark" (click)="save()"  >Save</button>
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">close</button>
+    <div class="modal-footer" style="background-color: black">
+      <button type="button" class="btn btn-outline-light btn-dark" (click)="UpdateParcours()"  >Update</button>
+      <button type="button" class="btn btn-outline-dark btn-light" (click)="c('Save click')">close</button>
     </div>
   </ng-template>
 

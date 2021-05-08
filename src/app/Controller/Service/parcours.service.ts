@@ -105,6 +105,17 @@ if (this.cours.sectionList != this.categoriesection.sectionList){
       this._section = null;
       this.affichelistSection(this.section.cours);
   }
+  public UpdateParcours(): void {
+    this.http.put('http://localhost:8036/E-learning/parcours/', this.parcours).subscribe(
+      data => {if (data >= 0){
+        console.log('succes update parcours');
+      }}, eror => {
+        console.log('error update parcours');
+      }
+    );
+    this.init();
+    this._parcours = null ;
+  }
   public save(): void {
     if (this.parcours.id == null){
     this.http.post<number>('http://localhost:8036/E-learning/parcours/', this.parcours).subscribe(
@@ -117,14 +128,7 @@ if (this.cours.sectionList != this.categoriesection.sectionList){
       }, eror => {
         console.log('error save cours');
       }
-    ); }else{
-  this.http.put('http://localhost:8036/E-learning/parcours/', this.parcours).subscribe(
-    data => {if (data >= 0){
-      console.log('succes update parcours');
-}}, eror => {
-  console.log('error update parcours');
-}
-); }
+    ); }
     this.init();
     this._parcours = null ;
   }

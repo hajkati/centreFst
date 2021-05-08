@@ -71,6 +71,9 @@ export class ParcoursComponent implements OnInit {
   public save(): void {
     this.parcoursService.save();
   }
+  public UpdateParcours(): void {
+    this.parcoursService.UpdateParcours();
+  }
 
   ngOnInit(): void {
     this.parcoursService.init();

@@ -47,7 +47,7 @@ export class EtudiantService {
   }
   public delete(etudiants: Etudiant){
     this.etudiant.ref = etudiants.ref;
-    this.http.delete<number >('http://localhost:8036/elearning/etudiant/ref/' + etudiants.ref ).subscribe(
+    this.http.delete<number>('http://localhost:8036/learn/etudiant/ref/' + etudiants.ref ).subscribe(
       data => {
         console.log('data' + data);
         this.deleteEtudiant(etudiants);
@@ -70,7 +70,7 @@ export class EtudiantService {
   }
 
   public findByNom(name: string) {
-    this.http.get<Array<Etudiant>>('http://localhost:8036/elearning/etudiant/nom/' + name ).subscribe(
+    this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/nom/' + name ).subscribe(
       data => {
         this._etudiants = data ;
         this._etudiant = null ;
@@ -81,7 +81,7 @@ export class EtudiantService {
   }
 
   public save(): void {
-    this.http.post<number>('http://localhost:8036/elearning/etudiant/', this.etudiant).subscribe(
+    this.http.post<number>('http://localhost:8036/learn/etudiant/', this.etudiant).subscribe(
       data => {
         if (data >= 0) {
           this.findAll();
@@ -101,7 +101,7 @@ export class EtudiantService {
   }
   public valider(etudiant: Etudiant): void {
     etudiant.etat = 'valider';
-    this.http.put('http://localhost:8036/elearning/etudiant/', etudiant).subscribe(
+    this.http.put('http://localhost:8036/learn/etudiant/', etudiant).subscribe(
       data => {
         console.log('');
       }
@@ -133,7 +133,7 @@ export class EtudiantService {
 
   constructor(private http: HttpClient) { }
   public findAll(){
-    this.http.get<Array<Etudiant>>( 'http://localhost:8036/elearning/etudiant/').subscribe(
+    this.http.get<Array<Etudiant>>( 'http://localhost:8036/learn/etudiant/').subscribe(
       data => {
         this.etudiants = data;
       }, error => {
