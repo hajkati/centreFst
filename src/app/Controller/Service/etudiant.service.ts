@@ -265,6 +265,8 @@ export class EtudiantService {
     myClone.password = etudiant.password;
     myClone.id = etudiant.id;
     myClone.parcours = etudiant.parcours;
+    myClone.etat = etudiant.etat;
+    myClone.centre = etudiant.centre;
     return myClone;
   }
 

@@ -54,8 +54,8 @@
             <div class="col-md-4">
 
               <label class="primaryLab"> Centre </label>
-              <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="Prof" (click)="findAllCentre()"  [(ngModel)]="etudiant.parcours.centre.ref" >
-                <option  selected="selected" *ngFor="let CL of centrelist"  [ngValue]="CL.ref"> {{CL.libelle}}</option>
+              <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="Prof" (click)="findAllCentre()"  [(ngModel)]="etudiant.centre.libelle" >
+                <option  selected="selected" *ngFor="let CL of centrelist"  [ngValue]="CL.libelle"> {{CL.libelle}}</option>
               </select>
 
             </div>

@@ -43,7 +43,7 @@
 
         <td>{{c.password}}</td>
         <td>{{c.ville}}</td>
-        <td>{{c.etatInscription.libelle}}</td>
+        <td>{{c.etat}}</td>
         <td>{{c.parcours.libelle}}</td>
         <td>{{c.parcours.centre.libelle}}</td>
 
@@ -82,10 +82,7 @@
     </div>
     <div class="form-group">
       <label class="primaryLab"> Etat: </label>
-      <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="etat" (click)="findAllEtat()"  [(ngModel)]="etudiant.etatInscription.libelle" >
-        <option  selected="selected" *ngFor="let ET of etatlist"  [ngValue]="ET.libelle"> {{ET.libelle}}</option>
-
-      </select>
+      <input type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="etat"  [(ngModel)]="etudiant.etat" >
 
     </div>
 
