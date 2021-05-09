@@ -25,6 +25,6 @@ export class EtudiantComponent implements OnInit {
     return this.etudiantService.etudiant.parcours;
   }
   get centre(): Centre{
-    return this.etudiantService.etudiant.centre;
+    return this.etudiantService.etudiant.parcours.centre;
   }
 }

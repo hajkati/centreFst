@@ -15,7 +15,7 @@
         <th>nom</th>
         <th>login</th>
         <th>age</th>
-        <th>ref</th>
+
         <th>password</th>
         <th>etat</th>
         <th>ville</th>
@@ -33,16 +33,21 @@
           <td>{{c.login}}</td>
           <td>{{c.age}}</td>
 
-
           <td>{{c.password}}</td>
-          <td>{{c.ville}}</td>
           <td>{{c.etat}}</td>
+          <td>{{c.ville}}</td>
+
           <td>{{c.parcours.libelle}}</td>
           <td>{{c.parcours.centre.libelle}}</td>
           <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span></td>
 
 
-          <td> <input type="checkbox" id="etat1" name="etat1" value="etat" (click)="valider(c)"></td>
+          <td><select type="text"  [(ngModel)]="c.etat"  >
+            <option  selected="selected" (click)="valider(c)" > valider</option>
+            <option  selected="selected" (click)="valider(c)" >Non valider</option>
+            <option  selected="selected" (click)="valider(c)" > en attente</option>
+          </select>
+          </td>
 
         </tr>
         </tbody>
@@ -53,3 +58,5 @@
     </div>
   </div>
 </div>
+
+

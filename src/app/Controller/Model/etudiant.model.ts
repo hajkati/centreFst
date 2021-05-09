@@ -16,7 +16,6 @@ export class Etudiant {
   public ville: string;
   public password: string;
   public parcours = new Parcours();
-  public centre = new Centre();
   public quizEtudiant = new Array<QuizEtudiant>();
   public etat: string;
   public prof = new Prof();

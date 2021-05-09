@@ -4,9 +4,8 @@ import {Etudiant} from '../../../Controller/Model/etudiant.model';
 import {EtudiantService} from '../../../Controller/Service/etudiant.service';
 import {Centre} from '../../../Controller/Model/centre.model';
 import {Parcours} from '../../../Controller/Model/parcours.model';
+import {ParcoursService} from '../../../Controller/Service/parcours.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
-
 @Component({
   selector: 'app-etudiant-list',
   templateUrl: './etudiant-list.component.html',
@@ -14,36 +13,48 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class EtudiantListComponent implements OnInit {
 
-  constructor(private etudiantService: EtudiantService  ) { }
+  constructor(private etudiantService: EtudiantService, private modalService: NgbModal) {
+  }
 
-  public delete(etudiants: Etudiant){
+  public delete(etudiants: Etudiant) {
     this.etudiantService.delete(etudiants);
   }
-  public save(){
+
+  public save() {
     this.etudiantService.save();
   }
 
   public valider(etudiant: Etudiant) {
     this.etudiantService.valider(etudiant);
   }
+  open(content): void {
+    this.modalService.open(content);
+  }
+
   ngOnInit(): void {
     this.etudiantService.findAll();
   }
+
   get etudiant(): Etudiant {
     return this.etudiantService.etudiant;
   }
+
   get etudiants(): Array<Etudiant> {
     return this.etudiantService.etudiants;
   }
+
   get etudiantslist(): Array<Etudiant> {
     return this.etudiantService.etudiantslist;
   }
-  get centre(): Centre{
+
+  get centre(): Centre {
     return this.etudiantService.centre;
   }
-  get parcours(): Parcours{
+
+  get parcours(): Parcours {
     return this.etudiantService.parcours;
   }
+
   findByNom(name: string): void {
     this.etudiantService.findByNom(name);
   }

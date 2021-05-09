@@ -8,10 +8,6 @@ import {Parcours} from '../model/parcours.model';
 import {Centre} from '../model/centre.model';
 import {Inscription} from '../model/inscription.model';
 import {Cours} from '../Model/cours.model';
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -100,14 +96,13 @@ export class EtudiantService {
     this._index = index;
   }
   public valider(etudiant: Etudiant): void {
-    etudiant.etat = 'valider';
+    this.etudiant = etudiant;
     this.http.put('http://localhost:8036/learn/etudiant/', etudiant).subscribe(
       data => {
         console.log('');
       }
     );
     console.log('error');
-
   }
   get etudiants(): Array<Etudiant> {
     if (this._etudiants == null){this._etudiants = new Array<Etudiant>();
@@ -182,7 +177,6 @@ export class EtudiantService {
     myClone.password = etudiant.password;
     myClone.id = etudiant.id;
     myClone.parcours = etudiant.parcours;
-    myClone.centre = etudiant.centre;
     return myClone;
   }
 

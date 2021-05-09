@@ -49,8 +49,8 @@ export class SectionComponent implements OnInit {
   public validateSaveSection(){
     return  this.parcoursService.validateSaveSection();
   }
-  public savesection(): void{
-    this.parcoursService.savesection();
+  public updatesection(): void{
+    this.parcoursService.updatesection();
   }
   get cours(): Cours {
     return this.parcoursService.cours;
@@ -67,7 +67,7 @@ export class SectionComponent implements OnInit {
   ngOnInit(): void {
   }
   open(content): void {
-    this.modalService.open(content);
+    this.modalService.open(content, { size: 'xl' });
   }
 
 }

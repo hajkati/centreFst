@@ -26,18 +26,8 @@ export class ParcoursComponent implements OnInit {
   public validateSaveParcours(){
     return  this.parcoursService.validateSaveParcours();
   }
-  // tslint:disable-next-line:typedef
-  public deleteSection(sections: Section){
-    this.parcoursService.deleteSection(sections);
-  }
   get section(): Section {
     return this.parcoursService.section;
-  }
-  get sectionList(): Array<Section> {
-    return this.parcoursService.sectionList;
-  }
-  public savesection(): void{
-    this.parcoursService.savesection();
   }
   get cours(): Cours {
     return this.parcoursService.cours;
