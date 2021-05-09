@@ -1,4 +1,5 @@
 import {Parcours} from './parcours.model';
+import {Etudiant} from './etudiant.model';
 
 export class Centre {
   public  id: number ;
@@ -8,4 +9,5 @@ export class Centre {
   public  log: string;
   public  password: string;
   public  parcoursList = new Array<Parcours>();
+
 }

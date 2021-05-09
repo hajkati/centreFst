@@ -27,19 +27,4 @@ export class EtudiantComponent implements OnInit {
   get centre(): Centre{
     return this.etudiantService.etudiant.centre;
   }
-  get centrelist(): Array<Centre> {
-    return this.etudiantService.centreList;
-  }
-
-  get parcourslist(): Array<Parcours> {
-    return this.etudiantService.parcourslist;
-  }
-  // tslint:disable-next-line:typedef
-  findAllCentre() {
-    this.etudiantService.findAllCentre();
-  }
-  // tslint:disable-next-line:typedef
-  findAllParcours() {
-    this.etudiantService.findAllParcours();
-  }
 }

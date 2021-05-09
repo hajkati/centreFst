@@ -14,7 +14,7 @@
         <td>{{s.libelle}}</td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn  btn-sm btn-outline-info btn-plus " (click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
+          <button class="btn  btn-sm btn-outline-info btn-plus "  (click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
         <button class="btn  btn-sm btn-outline-warning " (click)="open(contentsection)" (click)="updateSection(i,s)"><i class="fa fa-edit"></i></button>
          <button class="btn  btn-sm btn-outline-danger btn-trash "(click)="deleteSection(s)"><i class="fa fa-trash"></i></button>
           </div>
@@ -87,7 +87,8 @@
 
 
 
-<ng-template #list let-c="close" let-d="dismiss"  >
+<ng-template class="modal" style="width: 300%;" #list let-c="close" let-d="dismiss"  >
+
     <div class="modal-header card-header text-center"   style="color: cyan; background-color: black; " >information Section <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
     </button> </div>

@@ -8,117 +8,48 @@
   </div>
   <div class="card">
     <div class="card-header"  style="background-color: lightcyan">List des inscriptions</div>
+    <div class="card-body">
+      <table class="table table-striped table-hover" >
+        <thead>
+        <th>id</th>
+        <th>nom</th>
+        <th>login</th>
+        <th>age</th>
+        <th>ref</th>
+        <th>password</th>
+        <th>etat</th>
+        <th>ville</th>
+        <th>parcours</th>
+        <th>centre</th>
 
-  </div>
-  <div class="card-body">
-    <table class="table table-striped table-hover" >
-      <thead>
-      <th>id</th>
-      <th>nom</th>
-      <th>login</th>
-      <th>age</th>
-
-
-      <th>password</th>
-
-      <th>ville</th>
-      <th>etat</th>
-
-      <th>parcours</th>
-      <th>centre</th>
-
-      <th>prof</th>
-
-      <th>action</th>
-      <th>valider prof</th>
-      <th>valider centre</th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let c  of etudiants ; index as i ">
+        <th>action</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c  of etudiants ; index as i ">
 
 
-        <td>{{c.id}}</td>
-        <td>{{c.nom}}</td>
-        <td>{{c.login}}</td>
-        <td>{{c.age}}</td>
+          <td>{{c.id}}</td>
+          <td>{{c.nom}}</td>
+          <td>{{c.login}}</td>
+          <td>{{c.age}}</td>
 
 
-        <td>{{c.password}}</td>
-        <td>{{c.ville}}</td>
-        <td>{{c.etat}}</td>
-        <td>{{c.parcours.libelle}}</td>
-        <td>{{c.parcours.centre.libelle}}</td>
-
-        <td>{{c.prof.nom}}</td>
-        <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span>
-
-        <td><button class="btn  btn-outline-light  " style="background-color:lightblue; margin-left: 10%" (click)="open(content)">Prof</button></td>
-        <td><button class="btn  btn-outline-light  " style="background-color:lightblue; margin-left: 10%" (click)="open(Centre)">Centre</button></td>
+          <td>{{c.password}}</td>
+          <td>{{c.ville}}</td>
+          <td>{{c.etat}}</td>
+          <td>{{c.parcours.libelle}}</td>
+          <td>{{c.parcours.centre.libelle}}</td>
+          <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span></td>
 
 
-      </tr>
-      </tbody>
-    </table>
+          <td> <input type="checkbox" id="etat1" name="etat1" value="etat" (click)="valider(c)"></td>
 
-  </div>
-  <div class="card-footer">
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="card-footer">
+    </div>
   </div>
 </div>
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header"  style="color: cyan; background-color: black">
-    <h4 class="modal-title" id="modal-basic-title">ajout prof</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form">
-      <div class="form-group">
-        <label class="primaryLab"> Prof </label>
-        <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="Prof" (click)="findAllProf()" [(ngModel)]="etudiant.prof.nom" >
-          <option  selected="selected" *ngFor="let p of profList"  [ngValue]="p.nom"> {{p.nom}}</option>
-
-
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="primaryLab"> Etat: </label>
-      <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="etat" (click)="findAllEtat()"  [(ngModel)]="etudiant.etat" >
-        <option  selected="selected" *ngFor="let ET of etatlist"  [ngValue]="ET.libelle"> {{ET.libelle}}</option>
-
-      </select>
-
-    </div>
-
-  </div>
-
-  <div class="modal-footer" style="background-color: black" >
-    <button type="button" class="btn btn-outline-light btn-dark" (click)="valider(c)"  >Save</button>
-    <button type="button" class="btn btn-outline-dark btn-light" (click)="c('Save click')">close</button>
-  </div>
-</ng-template>
-
-
-<ng-template #Centre let-c="close" let-d="dismiss">
-  <div class="modal-header"  style="color: cyan; background-color: black">
-    <h4 class="modal-title" id="modal-basic-title1">ajout prof</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form">
-      <div class="form-group">
-        <label class="primaryLab"> Centre </label>
-        <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="Prof" (click)="findAllCentre()"  [(ngModel)]="etudiant.centre.libelle" >
-          <option  selected="selected" *ngFor="let CL of centrelist"  [ngValue]="CL.libelle"> {{CL.libelle}}</option>
-        </select>
-
-
-
-
-      </div>
-    </div>
-  </div>
-</ng-template>
