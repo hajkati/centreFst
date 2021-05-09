@@ -25,6 +25,20 @@ export class EtudiantComponent implements OnInit {
     return this.etudiantService.etudiant.parcours;
   }
   get centre(): Centre{
-    return this.etudiantService.etudiant.centre;
+    return this.etudiantService.etudiant.parcours.centre;
+  }
+  get centrelist(): Array<Centre> {
+    return this.etudiantService.centreList;
+  }
+  get parcourslist(): Array<Parcours> {
+    return this.etudiantService.parcourslist;
+  }
+  // tslint:disable-next-line:typedef
+  findAllCentre() {
+    this.etudiantService.findAllCentre();
+  }
+  // tslint:disable-next-line:typedef
+  findAllParcours() {
+    this.etudiantService.findAllParcours();
   }
 }

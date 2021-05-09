@@ -43,28 +43,40 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-6">
-              <label for="parcours">parcours:</label>
-              <input type="text" class="form-control" id="parcours" placeholder="Enter parcours" name="parcours" [(ngModel)]="etudiant.parcours.libelle">
-            </div>
-            <div class="col-md-6">
-              <label for="centre">centre:</label>
-              <input type="text" class="form-control" id="centre" placeholder="Enter centre" name="centre" [(ngModel)]="etudiant.centre.libelle">
+            <div class="col-md-4">
+
+              <label class="primaryLab"> parcours</label>
+              <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="parcours" (click)="findAllParcours()"  [(ngModel)]="etudiant.parcours.libelle" >
+                <option  selected="selected" *ngFor="let PL of parcourslist"  [ngValue]="PL.libelle"> {{PL.libelle}}</option>
+              </select>
             </div>
 
+            <div class="col-md-4">
+
+              <label class="primaryLab"> Centre </label>
+              <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="Prof" (click)="findAllCentre()"  [(ngModel)]="etudiant.parcours.centre.ref" >
+                <option  selected="selected" *ngFor="let CL of centrelist"  [ngValue]="CL.ref"> {{CL.libelle}}</option>
+              </select>
+
+            </div>
           </div>
         </div>
+
         <div class="checkbox">
           <label><input type="checkbox" name="remember"> Remember me</label>
         </div>
 
+
+
+
+
+
+
+
+        <div class="card-footer" style="background-color: powderblue"><button type="submit" class="btn btn-default btn btn-block btn-outline-primary" (click)="save()" >
+          Submit</button></div>
       </form>
     </div>
-
-
-
-
     </div>
-    <div class="card-footer" style="background-color: powderblue"><button type="submit" class="btn btn-default btn btn-block btn-outline-primary" (click)="save()" >Submit</button></div>
   </div>
 </div>
