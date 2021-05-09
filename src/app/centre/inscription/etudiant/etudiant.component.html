@@ -11,7 +11,7 @@
               <input type="text" class="form-control" id="nom" placeholder="Enter nom" name="nom" [(ngModel)]="etudiant.nom">
             </div>
             <div class="col-md-4">
-              <label for="parcours">prenom :</label>
+              <label for="prenom">prenom :</label>
               <input type="text" class="form-control" id="prenom" placeholder="Enter prenom" name="parcours" [(ngModel)]="etudiant.prenom">
             </div>
             <div class="col-md-4">
@@ -43,38 +43,24 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="primaryLab"> parcours</label>
+                <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="parcours" (click)="findAllParcours()"  [(ngModel)]="etudiant.parcours.libelle" >
+                  <option  selected="selected" *ngFor="let PL of parcourslist"  [ngValue]="PL.libelle"> {{PL.libelle}}</option>
+                </select>
 
-              <label class="primaryLab"> parcours</label>
-              <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="parcours" (click)="findAllParcours()"  [(ngModel)]="etudiant.parcours.libelle" >
-                <option  selected="selected" *ngFor="let PL of parcourslist"  [ngValue]="PL.libelle"> {{PL.libelle}}</option>
-              </select>
-            </div>
-
-            <div class="col-md-4">
-
-              <label class="primaryLab"> Centre </label>
-              <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="Prof" (click)="findAllCentre()"  [(ngModel)]="etudiant.centre.libelle" >
-                <option  selected="selected" *ngFor="let CL of centrelist"  [ngValue]="CL.libelle"> {{CL.libelle}}</option>
-              </select>
+              </div>
+              <div class="col-md-6">
+                <label for="centre">centre:</label>
+                <input type="text" class="form-control" id="centre" placeholder="Enter centre" name="centre" [(ngModel)]="etudiant.centre.libelle">
+              </div>
 
             </div>
           </div>
         </div>
 
-        <div class="checkbox">
-          <label><input type="checkbox" name="remember"> Remember me</label>
-        </div>
-
-
-
-
-
-
-
-
-        <div class="card-footer" style="background-color: powderblue"><button type="submit" class="btn btn-default btn btn-block btn-outline-primary" (click)="save()" >
-          Submit</button></div>
+        <div class="card-footer" style="background-color: powderblue"><button type="submit" class="btn btn-default btn btn-block btn-outline-primary" (click)="save()" >Submit</button></div>
       </form>
     </div>
     </div>

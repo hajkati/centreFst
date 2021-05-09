@@ -1,8 +1,11 @@
 import {Centre} from './centre.model';
 import {Parcours} from './parcours.model';
 import {QuizEtudiant} from './quiz-etudiant.model';
-import {EtatInscription} from './etat-inscription.model';
 import {Prof} from './prof.model';
+
+
+
+
 export class Etudiant {
   public id: number;
   public ref: string;

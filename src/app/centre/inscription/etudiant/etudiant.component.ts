@@ -25,11 +25,12 @@ export class EtudiantComponent implements OnInit {
     return this.etudiantService.etudiant.parcours;
   }
   get centre(): Centre{
-    return this.etudiantService.etudiant.parcours.centre;
+    return this.etudiantService.etudiant.centre;
   }
   get centrelist(): Array<Centre> {
     return this.etudiantService.centreList;
   }
+
   get parcourslist(): Array<Parcours> {
     return this.etudiantService.parcourslist;
   }

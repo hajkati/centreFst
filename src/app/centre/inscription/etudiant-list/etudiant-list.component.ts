@@ -17,6 +17,7 @@ import { EtatInscription } from 'src/app/Controller/Model/etat-inscription.model
 })
 export class EtudiantListComponent implements OnInit {
 
+
   constructor(private etudiantService: EtudiantService , private modalService: NgbModal ) { }
 
   public delete(etudiants: Etudiant){
@@ -26,8 +27,8 @@ export class EtudiantListComponent implements OnInit {
     this.etudiantService.save();
   }
 
-  public valider() {
-    this.etudiantService.valider();
+  public valider(etudiant: Etudiant) {
+    this.etudiantService.valider(etudiant);
   }
   ngOnInit(): void {
     this.etudiantService.findAll();

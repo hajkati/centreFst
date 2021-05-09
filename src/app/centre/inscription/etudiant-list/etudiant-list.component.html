@@ -23,8 +23,10 @@
 
       <th>ville</th>
       <th>etat</th>
+
       <th>parcours</th>
       <th>centre</th>
+
       <th>prof</th>
 
       <th>action</th>
@@ -82,16 +84,17 @@
     </div>
     <div class="form-group">
       <label class="primaryLab"> Etat: </label>
-      <input type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="etat"  [(ngModel)]="etudiant.etat" >
+      <select type="text" class="btn btn-block btn-outline-light form-control"  style="background-color: lightblue" name="etat" (click)="findAllEtat()"  [(ngModel)]="etudiant.etat" >
+        <option  selected="selected" *ngFor="let ET of etatlist"  [ngValue]="ET.libelle"> {{ET.libelle}}</option>
+
+      </select>
 
     </div>
 
   </div>
 
-
-
-  <div class="modal-footer" style="background-color: black">
-    <button type="button" class="btn btn-outline-light btn-dark" (click)="valider()"  >Save</button>
+  <div class="modal-footer" style="background-color: black" >
+    <button type="button" class="btn btn-outline-light btn-dark" (click)="valider(c)"  >Save</button>
     <button type="button" class="btn btn-outline-dark btn-light" (click)="c('Save click')">close</button>
   </div>
 </ng-template>

@@ -34,7 +34,7 @@ export class EtudiantService {
 
 
   get parcourslist(): Array<Parcours> {
-    if (this._parcourslist == null){this._parcourslist = new Array<Parcours>();
+    if (this._parcourslist == null){this._parcourslist= new Array<Parcours>();
     }
     return this._parcourslist;
   }
@@ -83,7 +83,7 @@ export class EtudiantService {
     );
   }
   public findAllParcours(): void {
-    this.http.get< Array<Parcours> >('http://localhost:8036/E-learning/parcours/').subscribe(
+    this.http.get< Array<Parcours> >('http://localhost:8036/learn/parcours/').subscribe(
       data => {
         this._parcourslist = data ;
       }, error => {
@@ -183,8 +183,9 @@ export class EtudiantService {
     this.etudiant = this.clone(etudiant);
     this._index = index;
   }
-  public valider(): void {
-    this.http.put('http://localhost:8036/learn/etudiant/', this.etudiant).subscribe(
+  public valider(etudiant: Etudiant): void {
+    etudiant.etat = 'valide';
+    this.http.put('http://localhost:8036/learn/etudiant/', etudiant).subscribe(
       data => {
         console.log('oki');
       }
@@ -265,7 +266,6 @@ export class EtudiantService {
     myClone.password = etudiant.password;
     myClone.id = etudiant.id;
     myClone.parcours = etudiant.parcours;
-    myClone.etat = etudiant.etat;
     myClone.centre = etudiant.centre;
     return myClone;
   }
