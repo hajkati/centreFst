@@ -24,7 +24,7 @@ export class QuestionQuizComponent implements OnInit {
   private subscription: Subscription;
 
   public dateNow = new Date();
-  public dDay = new Date('05/09/2021 20:00:00');
+  public dDay = new Date('05/20/2021 20:00:00');
   milliSecondsInASecond = 1000;
   hoursInADay = 24;
   minutesInAnHour = 60;
