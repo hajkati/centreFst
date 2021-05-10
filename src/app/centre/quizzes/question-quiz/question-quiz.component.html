@@ -1,46 +1,79 @@
 <div class="col-md-8 mt-lg-5"  style="margin-left: 140px;">
-  <div class="card">
-    <div class="card-header" style="background-color: powderblue">Quiz Grammar</div>
+  <div class="card" id="card" >
+    <div class="card-header">
+      <div id="countdown" class="timer">
+        <span id="hours"> {{hoursToDday}} </span>Hrs
+        <span id="minutes"> {{minutesToDday}} </span>Min
+        <span id="seconds"> {{secondsToDday}} </span>S
+      </div>
+      <output id="quizGrammar">Quiz Grammar</output>
+      <progress id="file" value="{{question.numero}}" max="{{this.questionsAll.length}}" style="color: red"></progress>
+      <output id="progression" class="w3-light-grey">{{question.numero}}/{{this.questionsAll.length}}</output>
+    </div>
     <div class="card-body" id="quiz">
 
       <div class="start" id="start">
-        <output>Welcome to the quiz</output><br>
-        <div class="card"  id="rules">
-          <div class="card-header">
-            <output>Rules</output>
-          </div>
-          <div class="card-body">
-            <output>- You can't go back to the previous question</output><br>
-            <output>- You have tree possibilities to answe: Unique choice, Multiple choice or Answer by replying</output><br>
-            <output>- Your mark  if you choose the all correctly answers you get the question's point Else you get 0</output><br>
-          </div>
-        </div>
+        <output id="welcome">Welcome {{this.etudiant.nom}} {{this.etudiant.prenom}}</output><br>
+        <output>In the {{this.question.quiz.lib}}'s quiz</output><br>
+          <output>Quiz will start at {{this.quiz.dateDebut}}</output><br>
+          <output>And will end at {{this.quiz.dateFin}}</output><br>
+          <output>You have 1 hour</output><br>
+          <output>Good luck</output><br>
 
-        <input type="button" id="btn-start" value="Start" (click)="answer()" style="background-color: lightcyan">
+        <ng-template  #popup let-c="close" let-d="dismiss" style="margin-top: 200px; width: 20px">
+          <div class="modal-header" style="background-color: black">
+            <output style="color: cyan; margin-left: 200px">Rules</output>
+          </div>
+          <div class="modal-body" >
+            <div class="form">
+              <div class="card-rules"  id="rules">
+                <div class="card-body-rules">
+                  <output>- You can't go back to the previous question</output><br>
+                  <output>- You have tree possibilities to answer: Unique choice, Multiple choice or Answer by replying</output><br>
+                  <output>- Your mark  if you choose the all correctly answers you get the question's point Else you get 0</output><br>
+                  <output>- You have {{this.questionsAll.length}} question</output><br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="background-color: #aef1f2; height: 50px">
+            <button type="button" class="btn btn-outline-light btn-dark" style="margin-top: -8px" (click)="c('Save click')">ok</button>
+          </div>
+        </ng-template>
+
+        <input type="button" id="btn-start" value="Start" (click)="answer()"><br>
+        <input type="button" id="btn-rules" value="Rules ?" (click)="open(popup)">
       </div>
       <div class="question" id="question">
-        <output>{{question.numero}} - {{question.libelle}}</output>
+        <!--<output id="correct-answers">{{this.reponsesCorrect.length}} correct answer(s)</output><br>-->
+        <output style="font-family: Palatino Linotype; font-size: 20px"><B>{{question.numero}} - {{question.libelle}} </B></output>
+        <output id="nbrRep" style="font-family: Palatino Linotype; font-size: 20px"><B> ({{this.nbrRep}})</B></output>
 
         <form class="reponse-radio" id="reponse-radio">
-          <div *ngFor="let r of reponses">
+          <div *ngFor="let r of reponses" class="question_answer" id="div-{{r.ref}}">
             <input (change)="getAnswerRadio($event,r)" type="{{this.typeQst}}" id="id-radio" name="rep-radio" value="{{r.lib}}" >
             <label>{{r.lib}}</label><br>
           </div>
-          <input type="button" value="Check" (click)="check()" style="background-color: lightcyan">
+          <input id="btn-radio" type="button" value="{{this.button}}" (click)="check()">
         </form>
 
 
-        <form class="reponse-text" id="reponse-text">
-          <label>Your answer :    </label>
-          <input #answerQuestion type="text" id="id-text" name="rep-text">
-          <input type="button"  value="Check" (click)="checkInput(answerQuestion.value)" style="background-color: lightcyan">
+        <form class="reponse-text" id="reponse-text" style="background-color: #dff7f7; width: 400px; height: 100px ; margin-left: 180px; border-radius: 5%">
+
+            <label style="margin-top: 40px">Your answer :    </label>
+            <input #answerQuestion type="text" id="id-text" name="rep-text" ><br>
+
+          <input id="btn-input" type="button"  value="{{this.button}}" (click)="checkInput(answerQuestion.value)">
         </form>
       </div>
+      <div class="card-body2" id="finish">
+        <output>You finish this quiz</output><br>
+        <output id="congratulations">Congratulations</output><br>
+        <output id="hard-luck">Hard-luck next time</output><br>
+        <output >Your result is = {{this.note}}/20</output>
+      </div>
+
     </div>
-    <div class="card-body2" id="finish">
-      <output>You finish this quiz</output><br>
-      <output >Your note is = {{this.note}}</output>
-    </div>
-    <div class="card-footer" style="background-color: powderblue"></div>
+
   </div>
 </div>

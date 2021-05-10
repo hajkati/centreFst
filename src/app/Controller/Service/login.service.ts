@@ -29,6 +29,14 @@ export class LoginService {
         console.log(this.etudiant);
       }
     );
+
+    if(this.etudiant.ref != null)
+    {
+      //#parcours , #quiz-etudiant , #create-quiz , #list-quiz , #preview-quiz,  #courses , #students
+      document.getElementById('inscription').style.visibility = 'hidden';
+      document.getElementById('quiz-etudiant').style.visibility = 'visible';
+    }
   }
+
   constructor(private  http: HttpClient) { }
 }

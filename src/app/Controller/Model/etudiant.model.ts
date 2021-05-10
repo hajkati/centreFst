@@ -2,6 +2,7 @@ import {Centre} from './centre.model';
 import {Parcours} from './parcours.model';
 import {QuizEtudiant} from './quiz-etudiant.model';
 import {Prof} from './prof.model';
+import {EtatInscription} from './etat-inscription.model';
 
 
 
@@ -15,8 +16,10 @@ export class Etudiant {
   public  login: string;
   public ville: string;
   public password: string;
+  public etat: string;
   public parcours = new Parcours();
   public quizEtudiant = new Array<QuizEtudiant>();
-  public etat: string;
+  public etatInscription = new EtatInscription();
   public prof = new Prof();
+  public centre = new Centre();
 }

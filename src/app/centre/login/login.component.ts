@@ -28,10 +28,12 @@ export class LoginComponent implements OnInit {
   {
     return this.loginService.findEtudiant(username,password);
   }
+
+
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loginService.etudiant
+
   }
 
 }
