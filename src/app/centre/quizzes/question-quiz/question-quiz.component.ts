@@ -8,6 +8,9 @@ import {Etudiant} from '../../../Controller/Model/etudiant.model';
 import {QuizEtudiant} from '../../../Controller/Model/quiz-etudiant.model';
 import {ReponseEtudiant} from '../../../Controller/Model/reponse-etudiant.model';
 import {TypeDeQuestion} from '../../../Controller/Model/type-de-question.model';
+import { Subscription, interval } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-question-quiz',
@@ -16,9 +19,61 @@ import {TypeDeQuestion} from '../../../Controller/Model/type-de-question.model';
 })
 export class QuestionQuizComponent implements OnInit {
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService, private  http: HttpClient, private modalService: NgbModal) { }
+
+  private subscription: Subscription;
+
+  public dateNow = new Date();
+  public dDay = new Date('05/09/2021 20:00:00');
+  milliSecondsInASecond = 1000;
+  hoursInADay = 24;
+  minutesInAnHour = 60;
+  SecondsInAMinute  = 60;
+
+  public timeDifference;
+  public secondsToDday;
+  public minutesToDday;
+  public hoursToDday;
+  public daysToDday;
 
 
+  private getTimeDifference () {
+    this.timeDifference = this.dDay.getTime() - new  Date().getTime();
+    this.allocateTimeUnits(this.timeDifference);
+  }
+
+  private allocateTimeUnits (timeDifference) {
+    this.secondsToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
+    this.minutesToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
+    this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
+    this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+    if(this.secondsToDday == 0 && this.minutesToDday == 0 && this.hoursToDday == 0 && this.daysToDday == 0)
+    {
+      this.quizEtudiant.id = this.quizEtudiants.length;
+      this.quizEtudiant.note = this.note;
+      if(this.quizEtudiant.note >= this.quiz.seuilReussite)
+      {
+        this.quizEtudiant.resultat = 'validé';
+      }
+      else {
+        this.quizEtudiant.resultat = 'non validé';
+      }
+      this.http.put('http://localhost:8036/centre/quizEtudiant/' , this.quizEtudiant).subscribe(
+        data => {
+          console.log('');
+        }
+      );
+      document.getElementById ('finish').style.visibility = 'visible';
+      document.getElementById ('quiz').remove();
+      document.getElementById ('countdown').style.visibility = 'hidden';
+      document.getElementById ('progression').style.visibility = 'hidden';
+    }
+    else if(this.secondsToDday < 0 || this.minutesToDday < 0 || this.hoursToDday < 0 || this.daysToDday < 0)
+    {
+      document.getElementById ('countdown').remove();
+      document.getElementById ('btn-start').remove();
+    }
+  }
 
   get questions(): Array<Question> {
     return this.questionService.questions;
@@ -158,6 +213,14 @@ export class QuestionQuizComponent implements OnInit {
     return this.questionService.insertQuizEtudiant();
   }
 
+  get button(): string {
+    return this.questionService.button;
+  }
+
+  get nbrRep(): string {
+    return this.questionService.nbrRep;
+  }
+
   public insertReponseEtudiant(z: number)
   {
     return this.questionService.insertReponseEtudiant(z);
@@ -182,6 +245,9 @@ export class QuestionQuizComponent implements OnInit {
     return this.questionService.typeQst;
   }
 
+  open(content): void {
+    this.modalService.open(content, {centered: true});
+  }
 
   ngOnInit(): void {
     this.questionService.findByNumero();
@@ -194,6 +260,8 @@ export class QuestionQuizComponent implements OnInit {
     this.questionService.findAllReponseEtudiant();
     this.questionService.selectedItemsRadio = new Array<Reponse>();
     this.questionService.selectedItemsCheckBox = new Array<Reponse>();
+    this.subscription = interval(1000)
+      .subscribe(x => { this.getTimeDifference(); });
   }
 
 }

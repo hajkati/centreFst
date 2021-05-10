@@ -1,8 +1,24 @@
 div{
   text-align: center;
 }
+#card{
+  height: 500px;
+  width: 800px;
+  text-align: center;
+  margin-left: 200px;
+  background-image: linear-gradient(to right, #90eef0, #aef1f2);
+}
+.card-header{
+  background-color: black;
+  height: 80px;
+  color: cyan;
+}
+.card-header-rules{
+  background-color: #2246b3;
+  height: 40px;
+  color: white;
+}
 .start{
-  margin-top: 60px;
   visibility: visible;
 }
 .question{
@@ -14,14 +30,112 @@ div{
 #btn-start{
   margin-top: 50px;
 }
-#rules{
+/*#rules{
   margin-top: 30px;
   width: 600px;
-  margin-left: 150px;
-}
+  margin-left: 80px;
+}*/
 #question{
   margin-top: 50px;
 }
 #reponse-radio{
   margin-top: 20px;
+}
+#progression{
+  visibility: hidden;
+}
+#quizGrammar{
+  margin-left: 250px;
+  margin-right: 80px;
+  font-size: 30px;
+  font-family: Algerian;
+}
+#countdown{
+  visibility: hidden;
+  text-align: left;
+}
+#file{
+  visibility: hidden;
+}
+.question_answer{
+  position: relative;
+  margin-bottom: 10px;
+  display: block;
+  padding: 8px 15px;
+  background-color: #90eef0;
+  border-radius: 15px;
+  transition: all 0.3s ease-out;
+  width: 300px;
+  height: 40px;
+  margin-left: 200px;
+}
+/*.question_answer > input , .question_answer > label{
+  margin-left: -100px;
+}*/
+
+.start > output {
+  margin-top: 10px;
+}
+
+.start > input {
+  background-color: white;
+  color: black;
+  width: 80px;
+  border-radius: 10%;
+}
+#welcome{
+  margin-top: 50px;
+}
+
+#btn-rules{
+  margin-top: 45px;
+  margin-left: 600px;
+  background-color: #aef1f2;
+  border: #aef1f2;
+}
+.question_answer > input{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+}
+#correct-answers{
+  margin-top: -600px;
+  margin-left: -500px;
+}
+/*.question_answer label{
+  display: block;
+  padding: 8px 15px;
+  background-color: #bad0c9;
+  border-radius: 15px;
+  transition: all 0.3s ease-out;
+}*/
+
+#finish > output{
+  margin-top: 50px;
+  font-size: 30px;
+  font-family: Garamond;
+}
+
+#btn-radio{
+  background-color: white;
+  margin-left: -30px;
+  margin-top: 50px;
+  width: 150px;
+  font-size: 15px;
+  font-weight: bold;
+}
+#btn-radio:hover, #btn-input:hover{
+  background-color: #90eef0;
+}
+#btn-input{
+  background-color: white;
+  margin-top: 120px;
+  width: 150px;
+  font-size: 15px;
+  font-weight: bold;
 }

@@ -32,6 +32,8 @@ export class QuestionService {
   private _q = 0;
   private _r = 0;
   private _typeQst :string;
+  private _button :string;
+  private _nbrRep :string;
   private correctAns : string[];
   private _selectedItemsRadio : Array<Reponse>;
   private _selectedItemsCheckBox : Array<Reponse>;
@@ -47,6 +49,22 @@ export class QuestionService {
   private _reponsesEtudiant: Array<ReponseEtudiant>;
   private _reponsesEtudiantNote: Array<ReponseEtudiant>;
 
+
+  get nbrRep(): string {
+    return this._nbrRep;
+  }
+
+  set nbrRep(value: string) {
+    this._nbrRep = value;
+  }
+
+  get button(): string {
+    return this._button;
+  }
+
+  set button(value: string) {
+    this._button = value;
+  }
 
   get reponsesEtudiant(): Array<ReponseEtudiant> {
     if(this._reponsesEtudiant == null)
@@ -411,6 +429,10 @@ export class QuestionService {
   }
 
   public check(){
+    if(this.i  == this.count-1)
+    {
+      this.button = 'Finish the test';
+    }
     if(this.question.typeDeQuestion.ref == 't1')
     {
       this.a = 0;
@@ -480,15 +502,19 @@ export class QuestionService {
     }
     if(this.i  == this.count)
     {
-      console.log('seuil de reussite est = ' + this.quiz.seuilReussite);
+      this.button = 'Finish the test';
       this.quizEtudiant.id = this.quizEtudiants.length;
       this.quizEtudiant.note = this.note;
       if(this.quizEtudiant.note >= this.quiz.seuilReussite)
       {
         this.quizEtudiant.resultat = 'validé';
+        document.getElementById ('congratulations').style.visibility = 'visible';
+        document.getElementById ('hard-luck').remove();
       }
       else {
         this.quizEtudiant.resultat = 'non validé';
+        document.getElementById ('congratulations').remove();
+        document.getElementById ('hard-luck').style.visibility = 'visible';
       }
       this.http.put('http://localhost:8036/centre/quizEtudiant/' , this.quizEtudiant).subscribe(
         data => {
@@ -496,7 +522,11 @@ export class QuestionService {
         }
       );
       document.getElementById ('finish').style.visibility = 'visible';
-      document.getElementById ('quiz').remove();
+      document.getElementById ('question').remove();
+      document.getElementById ('quiz').style.backgroundColor = '#90eef0';
+      document.getElementById ('countdown').style.visibility = 'hidden';
+      document.getElementById ('progression').style.visibility = 'hidden';
+      document.getElementById ('file').style.visibility = 'hidden';
     }
     else
     {
@@ -509,6 +539,10 @@ export class QuestionService {
 
 
   public checkInput(rep) {
+    if(this.i  == this.count-1)
+    {
+      this.button = 'Finish the test';
+    }
     this.findAllQuizEtudiant();
     this.findQuizEtudiant();
     this.a = 0;
@@ -570,7 +604,7 @@ export class QuestionService {
 
   public findQuizRef()
   {
-    this.http.get<Quiz>('http://localhost:8036/centre/quiz/ref/g1').subscribe(
+    this.http.get<Quiz>('http://localhost:8036/centre/quiz/ref/quiz1').subscribe(
       data => {
         this.quiz = data;
       }
@@ -681,11 +715,17 @@ export class QuestionService {
     this.note = 0;
     this.insertQuizEtudiant();
     this.CorrectAnswer();
+    this.button = 'Next';
     document.getElementById ('start').remove();
     document.getElementById ('question').style.visibility = 'visible';
+    document.getElementById ('countdown').style.visibility = 'visible';
+    document.getElementById ('progression').style.visibility = 'visible';
+    document.getElementById ('file').style.visibility = 'visible';
+    document.getElementById ('quiz').style.backgroundColor = 'white';
     if(this.question.typeDeQuestion.ref == 't1')
     {
       this.typeQst = 'radio';
+      document.getElementById ('nbrRep').style.visibility = 'hidden';
       document.getElementById ('reponse-radio').style.visibility = 'visible';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
     }
@@ -694,11 +734,16 @@ export class QuestionService {
       this.typeQst = 'checkbox';
       document.getElementById ('reponse-radio').style.visibility = 'visible';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
+      document.getElementById ('nbrRep').style.visibility = 'visible';
+      this.nbrRep = 'multiple choice';
     }
     else if(this.question.typeDeQuestion.ref == 't3')
     {
+      document.getElementById ('nbrRep').style.visibility = 'hidden';
       document.getElementById ('reponse-radio').style.visibility = 'hidden';
+      document.getElementById ('reponse-radio').style.height = '10px';
       document.getElementById ('reponse-text').style.visibility = 'visible';
+      document.getElementById ('reponse-text').style.marginTop = '-200px';
     }
   }
 
@@ -707,18 +752,23 @@ export class QuestionService {
     if(this.question.typeDeQuestion.ref == 't1')
     {
       this.typeQst = 'radio';
+      document.getElementById ('nbrRep').style.visibility = 'hidden';
       document.getElementById ('reponse-radio').style.visibility = 'visible';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
     }
     else if(this.question.typeDeQuestion.ref == 't2')
     {
+      document.getElementById ('nbrRep').style.visibility = 'visible';
       this.typeQst = 'checkbox';
+      this.nbrRep = 'multiple choice';
       document.getElementById ('reponse-radio').style.visibility = 'visible';
       document.getElementById ('reponse-text').style.visibility = 'hidden';
     }
     else if(this.typeQst == 't3')
     {
+      document.getElementById ('nbrRep').style.visibility = 'hidden';
       document.getElementById ('reponse-radio').style.visibility = 'hidden';
+      document.getElementById ('reponse-radio').style.height = '50px';
       document.getElementById ('reponse-text').style.visibility = 'visible';
       this.typeQst = 'text';
     }
@@ -738,10 +788,23 @@ export class QuestionService {
   {
     if(this.question.typeDeQuestion.ref == 't1')
     {
-      if(event.target.checked)
-      {
+      if(event.target.checked) {
         this._selectedItemsRadio.push(ref);
-        this._selectedItemsRadio = this._selectedItemsRadio.filter(m=>m==ref);
+        this._selectedItemsRadio = this._selectedItemsRadio.filter(m => m == ref);
+      }
+      for(let i=0 ; i < this.reponses.length ; i++)
+      {
+        if(ref.ref == this.reponses[i].ref)
+        {
+          document.getElementById('div-' + this.reponses[i].ref).style.backgroundColor = '#268a9e';
+          document.getElementById('div-' + this.reponses[i].ref).style.width = '320px';
+          document.getElementById('div-' + this.reponses[i].ref).style.height = '43px';
+        }
+        else {
+          document.getElementById('div-' + this.reponses[i].ref).style.backgroundColor = '#90eef0';
+          document.getElementById('div-' + this.reponses[i].ref).style.width = '300px';
+          document.getElementById('div-' + this.reponses[i].ref).style.height = '40px';
+        }
       }
     }
     else if(this.question.typeDeQuestion.ref == 't2')
@@ -749,10 +812,33 @@ export class QuestionService {
       if(event.target.checked)
       {
         this._selectedItemsCheckBox.push(ref);
+        document.getElementById('div-' + ref.ref).style.backgroundColor = '#268a9e';
+        document.getElementById('div-' + ref.ref).style.width = '320px';
+        document.getElementById('div-' + ref.ref).style.height = '43px';
       }
       else {
         this._selectedItemsCheckBox = this._selectedItemsCheckBox.filter(m=>m!=ref);
+        document.getElementById('div-' + ref.ref).style.backgroundColor = '#90eef0';
+        document.getElementById('div-' + ref.ref).style.width = '300px';
+        document.getElementById('div-' + ref.ref).style.height = '40px';
       }
+      /*for(let i=0 ; i < this.reponses.length ; i++)
+      {
+        for(let j=0 ; j < this.selectedItemsCheckBox.length ; j++)
+        {
+          if(this.selectedItemsCheckBox[i].ref == this.reponses[i].ref)
+          {
+            document.getElementById('div-' + this.reponses[i].ref).style.backgroundColor = '#268a9e';
+            document.getElementById('div-' + this.reponses[i].ref).style.width = '320px';
+            document.getElementById('div-' + this.reponses[i].ref).style.height = '43px';
+          }
+          else {
+            document.getElementById('div-' + this.reponses[i].ref).style.backgroundColor = '#90eef0';
+            document.getElementById('div-' + this.reponses[i].ref).style.width = '300px';
+            document.getElementById('div-' + this.reponses[i].ref).style.height = '40px';
+          }
+        }
+      }*/
     }
   }
 

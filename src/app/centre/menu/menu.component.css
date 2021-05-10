@@ -11,3 +11,7 @@
   .navbar .dropdown-menu.fade-down .liste:hover{float: none; color: cyan; border-radius: 5px; box-shadow: 0 0 5px #33ffff, 0 0 5px #66ffff; margin-bottom: 2px;}
 }
 
+/*#parcours , #quiz-etudiant , #create-quiz , #list-quiz , #preview-quiz,  #courses , #students{
+  visibility: hidden;
+}
+*/

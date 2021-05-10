@@ -7,15 +7,15 @@
     </button>
     <div class="collapse navbar-collapse" id="main_nav">
       <ul class="navbar-nav">
-        <li class="nav-item active"> <a class="nav-link" href="#" #home >Home </a> </li>
-        <li class="nav-item active"> <a class="nav-link" routerLink="login">Login </a> </li>
-        <li class="nav-item active"> <a class="nav-link" routerLink="etudiant">inscription </a> </li>
+        <li class="nav-item active" id="home"> <a class="nav-link" href="#" #home >Home </a> </li>
+        <li class="nav-item active" id="login"> <a class="nav-link" routerLink="login">Login </a> </li>
+        <li class="nav-item active" id="inscription"> <a class="nav-link" routerLink="etudiant">inscription </a> </li>
 
-        <li class="nav-item active"> <a class="nav-link" routerLink="parcours" routerLinkActive="active">Parcours </a> </li>
-        <li class="nav-item active"> <a class="nav-link" routerLink="quiz">Quiz </a> </li>
-        <li class="nav-item active"> <a class="nav-link" routerLink="quiz-create">Create Quiz </a> </li>
-        <li class="nav-item active"> <a class="nav-link" routerLink="quiz-list">List Quiz </a> </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item active" id="parcours"> <a class="nav-link" routerLink="parcours" routerLinkActive="active">Parcours </a> </li>
+        <li class="nav-item active" id="quiz-etudiant"> <a class="nav-link" routerLink="quiz">Quiz </a> </li>
+        <li class="nav-item active" id="create-quiz"> <a class="nav-link" routerLink="quiz-create">Create Quiz </a> </li>
+        <li class="nav-item active" id="list-quiz"> <a class="nav-link" routerLink="quiz-list">List Quiz </a> </li>
+        <li class="nav-item dropdown" id="courses">
           <a class="nav-link dropdown-toggle active"  data-bs-toggle="dropdown">  Our courses  </a>
           <ul class="dropdown-menu fade-up">
             <li><a class="dropdown-item liste" routerLink="parcours-list" routerLinkActive="active"> List Parcours </a></li>
@@ -25,10 +25,10 @@
             <li><a class="dropdown-item liste" routerLink="supercategoriesection-list" routerLinkActive="active"> List SuperCategorieSection </a></li>
           </ul>
         </li>
-        <li class="nav-item active"> <a class="nav-link" routerLink="quiz-preview">Preview Quiz </a> </li>
+        <li class="nav-item active" id="preview-quiz"> <a class="nav-link" routerLink="quiz-preview">Preview Quiz </a> </li>
       </ul>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown active">
+        <li class="nav-item dropdown active" id="students">
           <a class="nav-link dropdown-toggle active"  data-bs-toggle="dropdown"> Students </a>
           <ul class="dropdown-menu dropdown-menu-end fade-down">
             <li><a class="dropdown-item liste" routerLink="etudiant-list" routerLinkActive="active"> List etudiant </a></li>
@@ -36,6 +36,7 @@
           </ul>
         </li>
       </ul>
+      <li class="	fa fa-user-circle active" style="color: white; margin-left: 300px"> {{this.etudiant.prenom}} {{this.etudiant.nom}}</li>
 
     </div> <!-- navbar-collapse.// -->
   </div> <!-- container-fluid.// -->

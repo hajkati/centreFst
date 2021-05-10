@@ -26,6 +26,8 @@ import {QuizCreateComponent} from './centre/quizzes/quiz-create/quiz-create.comp
 import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component';
 import {QuizPreviewComponent} from './centre/quizzes/quiz-preview/quiz-preview.component';
 import { LoginComponent } from './centre/login/login.component';
+import {CountdownModule} from 'ngx-countdown';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +61,8 @@ import { LoginComponent } from './centre/login/login.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CountdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
