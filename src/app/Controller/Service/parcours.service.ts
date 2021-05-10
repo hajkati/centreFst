@@ -89,7 +89,7 @@ if (this.cours.sectionList != this.categoriesection.sectionList){
       data => {
         console.log(' save section');
       }
-    );} else{
+    ); } else{
   console.log(this.cours.sectionList.length);
 }
   }

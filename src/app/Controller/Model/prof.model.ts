@@ -1,5 +1,6 @@
 
 import {Etudiant} from './etudiant.model';
+import {ClassRoom} from './class-room.model';
 
 export class Prof {
   public id: number;
@@ -7,4 +8,5 @@ export class Prof {
   public nom: string;
   public prenom: string;
   public  etudiantList = new Array<Etudiant>();
+  public  classRoomList = new Array<ClassRoom>();
 }

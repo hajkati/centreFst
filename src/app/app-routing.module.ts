@@ -19,9 +19,10 @@ import {EtudiantListComponent} from './centre/inscription/etudiant-list/etudiant
 import {QuizListComponent} from './centre/quizzes/quiz-list/quiz-list.component';
 import {LoginComponent} from './centre/login/login.component';
 import {QuizPreviewComponent} from './centre/quizzes/quiz-preview/quiz-preview.component';
+import {ClassRoomComponent} from './centre/class-room/class-room.component';
 
 // tslint:disable-next-line:max-line-length
-export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent , QuizPreviewComponent ,  LoginComponent  ];
+export const components = [LearningComponent, ParcoursListComponent , CoursListComponent, SectionListComponent, CategorieSectionListComponent, SuperCategorieSectionListComponent ,  EtudiantComponent , EtudiantListComponent , QuestionQuizComponent , QuizCreateComponent , QuizListComponent , QuizPreviewComponent ,  LoginComponent , ClassRoomComponent ];
 const routes: Routes = [
   {path: '' , component: PageNotFoundComponent},
   {path: 'login' , component: components[12]},
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'quiz-create' , component: components[9]},
   {path: 'quiz-list' , component: components[10]},
   {path: 'quiz-preview' , component: components[11]},
+  {path: 'prof' , component: components[13]},
   {path: '**' , component: PageNotFoundComponent},
 ];
 @NgModule({

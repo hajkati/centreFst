@@ -10,9 +10,9 @@
       </thead>
       <tbody>
       <tr  *ngFor="let c of coursList ; index as i" >
-        <td>{{c.libelle}}(c:
+        <td [style.color]="(c.nombreLinkFinalise+c.nombreSectionFinalise) == 10? 'green' :(c.nombreLinkFinalise+c.nombreSectionFinalise) < 5? 'red':'orange' ">{{c.libelle}}<output id="nbr-{{c.libelle}}">(c:
           {{ c.nombreSectionFinalise}},
-          L:{{ c.nombreLinkFinalise}})
+          L:{{ c.nombreLinkFinalise}})</output>
         </td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">

@@ -11,7 +11,7 @@
       <tbody>
       <tr *ngFor="let s of sectionList; index as i">
         <td>{{s.categorieSection.libelle}}</td>
-        <td>{{s.libelle}}</td>
+        <td   [style.color]="(s.url+s.content) == 2? 'green' :(s.url+s.content) == 1? 'orange': 'red'">{{s.libelle}} (c:{{s.content}}; L:{{s.url}})</td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
           <button class="btn  btn-sm btn-outline-info btn-plus "  (click)="findSectionByid(s.id)" (click)="open(list)"><i class="fa fa-eye"></i></button>
@@ -37,21 +37,20 @@
   </div>
   <div class="modal-body" >
     <div class="form">
-      <div class="form-group">
+      <div class="row">
+
+        <div class="col-md-6">
         <label class="primaryLab">Cours reference</label><br>
         <select type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: lightblue" name="Parcours" (click)="findAllCours()" [(ngModel)]="section.cours.id" >
           <option  selected="selected" *ngFor="let c of coursList"  [ngValue]="c.id"> {{c.libelle}}</option>
         </select>
       </div>
-      <div class="form-group">
+        <div class="col-md-6">
         <label class="primaryLab">categorieSection</label>
         <select type="text" class="btn btn-block btn-outline-light " name="fieldName" style="background-color: lightblue" name="Parcours" (click)="findAllCategorieSection()" [(ngModel)]="section.categorieSection.code" >
           <option  selected="selected" *ngFor="let c of categoriesectionList "  [ngValue]="c.code"> {{c.libelle}}</option>
         </select>
-      </div>
-      <div class="form-group">
-        <label>Reference</label>
-        <input type="text" class="form-control text-center" placeholder="Reference" [(ngModel)]="section.code">
+        </div>
       </div>
       <div class="form-group">
         <label>Libelle</label>
