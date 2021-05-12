@@ -1,62 +1,96 @@
 <div class="container-lg  ">
-  <div class="form-group mt-lg-5 " >
+<div class="form-group mt-lg-5 " >
 
-    <label class="form-check-label form-inline mr-lg-n5 "> Etudiant :
-      <input type="search" class="form-control-sm col-md-10 form-inline"  #nom [(ngModel)]="etudiant.nom" >
-      <button type="button" class="btn btn-outline-primary " style="margin-left: 20px" (click)="findByNom(nom.value)" >Search</button></label>
+  <label class="form-check-label form-inline mr-lg-n5 "> Etudiant :
+    <input type="search" class="form-control-sm col-md-10 form-inline"  #nom [(ngModel)]="etudiant.nom" >
+    <button type="button" class="btn btn-outline-primary " style="margin-left: 20px" (click)="findByNom(nom.value)" >Search</button></label>
+
+</div>
+<div class="card">
+  <div class="card-header"  style="background-color: lightcyan">List des inscriptions</div>
+  <div class="card-body">
+    <table class="table table-striped table-hover" >
+      <thead>
+      <th>id</th>
+      <th>nom</th>
+      <th>login</th>
+      <th>age</th>
+      <th>password</th>
+      <th>ville</th>
+      <th>etat</th>
+      <th>prof</th>
+      <th>parcours</th>
+      <th>centre</th>
+
+      <th>action</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c  of etudiants ; index as i ">
+
+
+        <td>{{c.id}}</td>
+        <td>{{c.nom}}</td>
+        <td>{{c.login}}</td>
+        <td>{{c.age}}</td>
+        <td>{{c.password}}</td>
+        <td>{{c.ville}}</td>
+        <td>{{c.etatInscription.libelle}}</td>
+        <td>{{c.prof.nom}} {{c.prof.prenom}}</td>
+        <td>{{c.parcours.libelle}}</td>
+        <td>{{c.parcours.centre.libelle}}</td>
+        <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span></td>
+
+        <td><button class="btn  btn-outline-light  " style="background-color:lightblue; margin-left: 10%" (click)="update(i,c)" (click)="open(content)">
+          valider</button></td>
+
+
+      </tr>
+      </tbody>
+    </table>
 
   </div>
-  <div class="card">
-    <div class="card-header"  style="background-color: lightcyan">List des inscriptions</div>
-    <div class="card-body">
-      <table class="table table-striped table-hover" >
-        <thead>
-        <th>id</th>
-        <th>nom</th>
-        <th>login</th>
-        <th>age</th>
-
-        <th>password</th>
-        <th>etat</th>
-        <th>ville</th>
-        <th>parcours</th>
-        <th>centre</th>
-
-        <th>action</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let c  of etudiants ; index as i ">
-
-
-          <td>{{c.id}}</td>
-          <td>{{c.nom}}</td>
-          <td>{{c.login}}</td>
-          <td>{{c.age}}</td>
-
-          <td>{{c.password}}</td>
-          <td>{{c.etat}}</td>
-          <td>{{c.ville}}</td>
-
-          <td>{{c.parcours.libelle}}</td>
-          <td>{{c.parcours.centre.libelle}}</td>
-          <td><span (click)="delete(c)"><i class="fa fa-trash btn btn-danger"></i></span></td>
-
-
-          <td><select type="text"  [(ngModel)]="c.etat"  >
-            <option  selected="selected" (click)="valider(c)" > valider</option>
-            <option  selected="selected" (click)="valider(c)" >Non valider</option>
-            <option  selected="selected" (click)="valider(c)" > en attente</option>
-          </select>
-          </td>
-
-        </tr>
-        </tbody>
-      </table>
-
-    </div>
-    <div class="card-footer">
-    </div>
+  <div class="card-footer">
   </div>
 </div>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss" style="width: 200%">
+  <div class="modal-header"  style="color: cyan; background-color: black">
+    <h4 class="modal-title" >Update section</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true" class="btn btn-outline-dark btn-light ">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <div class="form">
+      <div class="row">
+
+        <div class="col-md-6">
+          <label class="primaryLab">etat</label><br>
+          <select type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: lightblue" name="etat" (click)="findAllEtat()" [(ngModel)]="etudiant.etatInscription.ref" >
+            <option  selected="selected" *ngFor="let e of etatInscriptionList"  [ngValue]="e.ref" > {{e.libelle}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="primaryLab">Prof</label>
+          <select type="text" class="btn btn-block btn-outline-light form-control " name="fieldName" style="background-color: lightblue" name="prof" (click)="findAllProf()" [(ngModel)]="etudiant.prof.id" >
+            <option  selected="selected" *ngFor="let c of profList " [ngValue]="c.id"> {{c.prenom}}</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer" style="background-color: black">
+    <button type="button" class="btn btn-outline-light btn-dark" (click)="valider()" >Save</button>
+    <button type="button" class="btn btn-outline-dark btn-light" (click)="c('Save click')">close</button>
+  </div>
+</ng-template>
+
+
 
 

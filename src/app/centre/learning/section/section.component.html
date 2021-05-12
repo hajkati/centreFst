@@ -41,15 +41,15 @@
 
         <div class="col-md-6">
         <label class="primaryLab">Cours reference</label><br>
-        <select type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: lightblue" name="Parcours" (click)="findAllCours()" [(ngModel)]="section.cours.id" >
+        <select type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: lightblue" name="Cours" (click)="findAllCours()" [(ngModel)]="section.cours.id" >
           <option  selected="selected" *ngFor="let c of coursList"  [ngValue]="c.id"> {{c.libelle}}</option>
         </select>
       </div>
 
         <div class="col-md-6">
-        <label class="primaryLab">categorieSection</label>
-        <select type="text" class="btn btn-block btn-outline-light " name="fieldName" style="background-color: lightblue" name="Parcours" (click)="findAllCategorieSection()" [(ngModel)]="section.categorieSection.code" >
-          <option  selected="selected" *ngFor="let c of categoriesectionList "  [ngValue]="c.code"> {{c.libelle}}</option>
+        <label class="primaryLab">categorieSection</label><br>
+        <select type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: lightblue" name="Categorie" (click)="findAllCategorieSection()" [(ngModel)]="section.categorieSection.id" >
+          <option  selected="selected" *ngFor="let t of categoriesectionList "  [ngValue]="t.id"> {{t.libelle}}</option>
         </select>
         </div>
 

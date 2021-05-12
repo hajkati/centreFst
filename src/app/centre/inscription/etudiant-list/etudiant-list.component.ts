@@ -6,6 +6,8 @@ import {Centre} from '../../../Controller/Model/centre.model';
 import {Parcours} from '../../../Controller/Model/parcours.model';
 import {ParcoursService} from '../../../Controller/Service/parcours.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Prof} from '../../../Controller/Model/prof.model';
+import {EtatInscription} from '../../../Controller/Model/etat-inscription.model';
 @Component({
   selector: 'app-etudiant-list',
   templateUrl: './etudiant-list.component.html',
@@ -23,9 +25,11 @@ export class EtudiantListComponent implements OnInit {
   public save() {
     this.etudiantService.save();
   }
-
-  public valider(etudiant: Etudiant) {
-    this.etudiantService.valider(etudiant);
+  public update(index: number, etudiant: Etudiant) {
+    this.etudiantService.update(index, etudiant);
+  }
+  public valider() {
+    this.etudiantService.valider();
   }
   open(content): void {
     this.modalService.open(content);
@@ -38,11 +42,15 @@ export class EtudiantListComponent implements OnInit {
   get etudiant(): Etudiant {
     return this.etudiantService.etudiant;
   }
-
+  get profList(): Array<Prof> {
+    return this.etudiantService.prof;
+  }
   get etudiants(): Array<Etudiant> {
     return this.etudiantService.etudiants;
   }
-
+  get etatInscriptionList(): Array<EtatInscription> {
+    return this.etudiantService.etatinscriptionslist;
+  }
   get etudiantslist(): Array<Etudiant> {
     return this.etudiantService.etudiantslist;
   }
@@ -54,7 +62,12 @@ export class EtudiantListComponent implements OnInit {
   get parcours(): Parcours {
     return this.etudiantService.parcours;
   }
-
+  findAllEtat(): void {
+    this.etudiantService.findAllEtat();
+  }
+  findAllProf(): void {
+    this.etudiantService.findAllProf();
+  }
   findByNom(name: string): void {
     this.etudiantService.findByNom(name);
   }

@@ -8,13 +8,17 @@ import {Parcours} from '../model/parcours.model';
 import {Centre} from '../model/centre.model';
 import {Inscription} from '../model/inscription.model';
 import {Cours} from '../Model/cours.model';
+import {EtatInscription} from '../Model/etat-inscription.model';
+import {Prof} from '../Model/prof.model';
 @Injectable({
   providedIn: 'root'
 })
 export class EtudiantService {
   private _etudiant: Etudiant;
   private _etudiants: Array<Etudiant>;
+  private _prof: Array<Prof>;
   private _inscriptions: Array<Inscription>;
+  private _etatinscriptionslist: Array<EtatInscription>;
   private _index: number;
   private _parcours: Parcours;
   private _centre: Centre;
@@ -22,6 +26,28 @@ export class EtudiantService {
 
   private _etudiantslist: Array<Etudiant>;
 
+
+  get prof(): Array<Prof> {
+    if (this._prof == null){
+      this._prof = new Array<Prof>();
+    }
+    return this._prof;
+  }
+
+  set prof(value: Array<Prof>) {
+    this._prof = value;
+  }
+
+  get etatinscriptionslist(): Array<EtatInscription> {
+    if (this._etatinscriptionslist == null){
+      this._etatinscriptionslist = new Array<EtatInscription>();
+    }
+    return this._etatinscriptionslist;
+  }
+
+  set etatinscriptionslist(value: Array<EtatInscription>) {
+    this._etatinscriptionslist = value;
+  }
 
   get etudiantupdate(): Etudiant {
     if (this._etudiantupdate == null){
@@ -95,14 +121,16 @@ export class EtudiantService {
     this.etudiant = this.clone(etudiant);
     this._index = index;
   }
-  public valider(etudiant: Etudiant): void {
-    this.etudiant = etudiant;
-    this.http.put('http://localhost:8036/learn/etudiant/', etudiant).subscribe(
-      data => {
-        console.log('');
+  public valider(): void {
+    this.http.put('http://localhost:8036/learn/etudiant/', this.etudiant).subscribe(
+      data =>  {if (data >= 0){
+        this.findAll();
+        console.log('succes update section');
+      }}, eror => {
+        console.log('error update section');
       }
     );
-    console.log('error');
+    this._etudiant = null;
   }
   get etudiants(): Array<Etudiant> {
     if (this._etudiants == null){this._etudiants = new Array<Etudiant>();
@@ -136,7 +164,24 @@ export class EtudiantService {
       }
     );
   }
-
+  public findAllProf(){
+    this.http.get<Array<Prof>>( 'http://localhost:8036/centre/prof/').subscribe(
+      data => {
+        this.prof = data;
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+  public findAllEtat(){
+    this.http.get<Array<EtatInscription>>( 'http://localhost:8036/learn/etatInscription/').subscribe(
+      data => {
+        this.etatinscriptionslist = data;
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
   get etudiant(): Etudiant {
     if (this._etudiant == null){
       this._etudiant = new Etudiant();
@@ -177,6 +222,8 @@ export class EtudiantService {
     myClone.password = etudiant.password;
     myClone.id = etudiant.id;
     myClone.parcours = etudiant.parcours;
+    myClone.prof = etudiant.prof;
+    myClone.etatInscription = etudiant.etatInscription;
     return myClone;
   }
 

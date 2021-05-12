@@ -57,6 +57,7 @@ export class ParcoursService {
     this.http.put('http://localhost:8036/E-learning/cours/', this.cours).subscribe(
       data => {if (data > 0){
         this.updateCours(this._index, this.cours);
+        this.afficheCours(this.parcours);
         console.log(' save cours');
       }}, eror => {
         console.log('error save cours');
@@ -97,14 +98,15 @@ if (this.cours.sectionList != this.categoriesection.sectionList){
 
       this.http.put('http://localhost:8036/E-learning/section/', this.section).subscribe(
         data => {if (data >= 0){
-
+          this.updateSection(this._index, this.section);
+          this.affichelistSection(this.cours);
           console.log('succes update section');
         }}, eror => {
           console.log('error update section');
         }
       );
       this._section = null;
-      this.affichelistSection(this.section.cours);
+
   }
   public UpdateParcours(): void {
     this.http.put('http://localhost:8036/E-learning/parcours/', this.parcours).subscribe(
